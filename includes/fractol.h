@@ -15,6 +15,7 @@
 # define MANDELBROT 1
 # define JULIA 2
 # define BURNING_SHIP 3
+# define TRICORN 4
 
 /*  Keycodes    */
 # define EVENT_CLOSE_BTN 17
@@ -47,6 +48,7 @@ typedef struct  s_fractol
 int mandelbrot(t_fractol *f, double cr, double ci, int x, int y);
 int julia(t_fractol *f, double zr, double zi, double cr, double ci, int x, int y);
 int burning_ship(t_fractol *f, double cr, double ci, int x, int y);
+int tricorn(t_fractol *f, double cr, double ci, int x, int y);
 
 /*  Draw    */
 void    render(t_fractol *f);

@@ -11,6 +11,8 @@ void    get_set(t_fractol *f, char **av)
         f->set = JULIA;
     else if (av[1][0] == 'B' || av[1][0] == 'b' || av[1][0] == '3')
         f->set = BURNING_SHIP;
+    else if (av[1][0] == 'T' || av[1][0] == 't' || av[1][0] == '4')
+        f->set = TRICORN;
     else
     {
         help_msg();
@@ -27,8 +29,6 @@ void    init(t_fractol *f, char **av)
     f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
     f->cr = 0.353;
     f->ci = 0.288;
-//    f->min_i = -1.0 * HEIGHT / WIDTH;
-//    f->max_i = 1.0 * HEIGHT / WIDTH;
 }
 
 int main(int ac, char **av)

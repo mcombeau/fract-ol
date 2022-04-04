@@ -20,6 +20,7 @@ void help_msg(void)
     ft_putendl_fd("\tM - Mandelbrot", 1);
     ft_putendl_fd("\tJ - Julia", 1);
     ft_putendl_fd("\tB - Burning Ship", 1);
+    ft_putendl_fd("\tT - Tricorn", 1);
     ft_putendl_fd("Usage example: ./fractol M", 1);
 }
 

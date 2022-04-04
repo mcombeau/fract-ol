@@ -17,14 +17,17 @@ void    render(t_fractol *f)
         x = 0;
         while (x < WIDTH)
         {
-            cr = f->min_r + ((double)x / WIDTH) * (f->max_r - f->min_r);
-            ci = f->min_i + ((double)y / HEIGHT) * (f->max_i - f->min_i);
+            // Map pixel coordinate to real/imaginary point
+            cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
+            ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
             if (f->set == MANDELBROT)
                 mandelbrot(f, cr, ci, x, y);
             else if (f->set == JULIA)
                 julia(f, cr, ci, f->cr, f->ci, x, y);
             else if (f->set == BURNING_SHIP)
                 burning_ship(f, cr, ci, x, y);
+            else if (f->set == TRICORN)
+                tricorn(f, cr, ci, x, y);
             x++;
         }
         y++;

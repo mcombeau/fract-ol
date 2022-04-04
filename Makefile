@@ -23,7 +23,8 @@ SRC			=	fractol.c \
 				render.c \
 				fractal_sets/mandelbrot.c \
 				fractal_sets/julia.c \
-				fractal_sets/burning_ship.c
+				fractal_sets/burning_ship.c \
+				fractal_sets/tricorn.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 

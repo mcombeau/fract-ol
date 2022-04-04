@@ -5,7 +5,7 @@ int key_event(int keycode, t_fractol *mlx)
     char *keycode_str;
 
     keycode_str = ft_itoa(keycode);
-//    ft_putendl_fd(keycode_str, 2);
+    ft_putendl_fd(keycode_str, 2);
     free(keycode_str);
     if (keycode == KEY_ESC)
     {
