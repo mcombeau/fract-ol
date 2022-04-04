@@ -7,9 +7,9 @@
 # include <math.h>
 
 /*  Dimensions    */
-# define WIDTH 640
-# define HEIGHT 540
-# define MAX_ITERATIONS (30)
+# define WIDTH 900
+# define HEIGHT 900
+# define MAX_ITERATIONS 80
 
 /*  Fractal sets    */
 # define MANDELBROT 1
@@ -30,11 +30,19 @@
 # define KEY_RIGHT 65363
 # define KEY_PLUS 61
 # define KEY_MINUS 45
+# define KEY_SPACE 32
+# define MOUSE_WHEEL_UP 4
+# define MOUSE_WHEEL_DOWN 5
+# define MOUSE_WHEEL_BTN 3
+# define MOUSE_BTN 1
+# define MOUSE_BTN_2 3
 
 typedef struct  s_fractol
 {
     void    *mlx;
     void    *win;
+    void    *img;
+    char    *buf;
     int     set;
     double  min_r;
     double  max_r;
@@ -42,6 +50,7 @@ typedef struct  s_fractol
     double  max_i;
     double  cr;
     double  ci;
+    int     *color_scheme;
 }   t_fractol;
 
 /*  Functions   */
@@ -52,6 +61,7 @@ int tricorn(t_fractol *f, double cr, double ci, int x, int y);
 
 /*  Draw    */
 void    render(t_fractol *f);
+void    set_colors(t_fractol *f, int r, int g, int b);
 
 /*  Events   */
 int key_event(int keycode, t_fractol *mlx);
