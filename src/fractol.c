@@ -56,10 +56,18 @@ void    init(t_fractol *f, char **av)
     f->max_r = 1.0;
     f->min_i = -1.5;
     f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
-    f->cr = 0.353;
-    f->ci = 0.288;
+    f->julia_toggle = 1;
+    f->cr = -0.472;
+    f->ci = -0.568;
     init_img(f);
     set_colors(f, 76, 0, 159);
+}
+
+int mouse_detection_test(int x, int y, t_fractol *mlx)
+{
+    (void)mlx;
+    printf("Mouse pos: x = %d, y = %d\n", x, y);
+    return (0);
 }
 
 int main(int ac, char **av)
@@ -72,9 +80,15 @@ int main(int ac, char **av)
         exit(0);
     }
     init(&f, av);
+    render(&f);
     mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
     mlx_key_hook(f.win, key_event, &f);
     mlx_mouse_hook(f.win, mouse_event, &f);
-    render(&f);
+    mlx_hook(f.win, 6, 0, mouse_detection_test, &f);
+    if (f.set == JULIA)
+    {
+        printf("Set is Julia.\n");
+        mlx_hook(f.win, 6, 1, julia_shift, &f);
+    }
     mlx_loop(f.mlx);
 }

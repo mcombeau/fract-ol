@@ -52,7 +52,7 @@
     converted previously from a pixel's coordinates.
     Here we color any pixel which is part of the mandelbrot set.
 */
-int mandelbrot(t_fractol *f, double cr, double ci, int x, int y)
+int mandelbrot(t_fractol *f, double cr, double ci)
 {
     int     n;
     double  zr;

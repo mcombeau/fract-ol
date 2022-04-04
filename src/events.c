@@ -44,11 +44,11 @@ void    move(t_fractol *f, double distance, char direction)
 
 int key_event(int keycode, t_fractol *mlx)
 {
-//   char *keycode_str;
+   char *keycode_str;
 
-//   keycode_str = ft_itoa(keycode);
-//   ft_putendl_fd(keycode_str, 2);
-//   free(keycode_str);
+   keycode_str = ft_itoa(keycode);
+   ft_putendl_fd(keycode_str, 2);
+   free(keycode_str);
     if (keycode == KEY_ESC)
     {
         end_fractol(mlx);
@@ -78,8 +78,8 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx)
 
     keycode_str = ft_itoa(keycode);
     ft_putendl_fd(keycode_str, 2);
-    free(keycode_str); */
-    if (keycode == MOUSE_WHEEL_UP)
+    free(keycode_str);
+*/    if (keycode == MOUSE_WHEEL_UP)
     {
         zoom(mlx, 0.5);
         x -= WIDTH / 2;
@@ -95,6 +95,15 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx)
     }
     else if (keycode == MOUSE_WHEEL_DOWN)
         zoom(mlx, 2);
+    else if (keycode == MOUSE_BTN)
+    {
+        if (mlx->set == JULIA)
+            julia_shift(x, y, mlx);
+        if (mlx->julia_toggle == 1)
+            mlx->julia_toggle = 0;
+        else
+            mlx->julia_toggle = 1;
+    }
     else
         return(0);
     render(mlx);

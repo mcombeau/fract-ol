@@ -3,7 +3,7 @@
 /*
     Z = Z * Z + c
 */
-int burning_ship(t_fractol *f, double cr, double ci, int x, int y)
+int burning_ship(t_fractol *f, double cr, double ci)
 {
     int     n;
     double  zr;

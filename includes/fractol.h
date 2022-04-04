@@ -51,17 +51,19 @@ typedef struct  s_fractol
     double  cr;
     double  ci;
     int     *color_scheme;
+    int     julia_toggle;
 }   t_fractol;
 
-/*  Functions   */
-int mandelbrot(t_fractol *f, double cr, double ci, int x, int y);
-int julia(t_fractol *f, double zr, double zi, double cr, double ci, int x, int y);
-int burning_ship(t_fractol *f, double cr, double ci, int x, int y);
-int tricorn(t_fractol *f, double cr, double ci, int x, int y);
+/*  Sets   */
+int mandelbrot(t_fractol *f, double cr, double ci);
+int julia(t_fractol *f, double zr, double zi, double cr, double ci);
+int burning_ship(t_fractol *f, double cr, double ci);
+int tricorn(t_fractol *f, double cr, double ci);
 
 /*  Draw    */
 void    render(t_fractol *f);
 void    set_colors(t_fractol *f, int r, int g, int b);
+int    julia_shift(int x, int y, t_fractol *f);
 
 /*  Events   */
 int key_event(int keycode, t_fractol *mlx);

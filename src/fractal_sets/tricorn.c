@@ -1,6 +1,6 @@
 #include "../../includes/fractol.h"
 
-int tricorn(t_fractol *f, double cr, double ci, int x, int y)
+int tricorn(t_fractol *f, double cr, double ci)
 {
     int     n;
     double  zr;

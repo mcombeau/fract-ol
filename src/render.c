@@ -47,13 +47,13 @@ void    render(t_fractol *f)
             cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
             ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
             if (f->set == MANDELBROT)
-                nb_iter = mandelbrot(f, cr, ci, x, y);
+                nb_iter = mandelbrot(f, cr, ci);
             else if (f->set == JULIA)
-                nb_iter = julia(f, cr, ci, f->cr, f->ci, x, y);
+                nb_iter = julia(f, cr, ci, f->cr, f->ci);
             else if (f->set == BURNING_SHIP)
-                nb_iter = burning_ship(f, cr, ci, x, y);
+                nb_iter = burning_ship(f, cr, ci);
             else if (f->set == TRICORN)
-                nb_iter = tricorn(f, cr, ci, x, y);
+                nb_iter = tricorn(f, cr, ci);
             set_pixel(f, x, y, f->color_scheme[nb_iter]);
             x++;
         }
