@@ -22,30 +22,9 @@ int tricorn(t_fractol *f, double cr, double ci, int x, int y)
         tmp = zr * zr - zi * zi + cr;
         zi = -2 * zr * zi + ci;
         zr = tmp;
-
-    //  tmp = 2 * zr * zi + ci;
-	//	zr = zr * zr - zi * zi + cr;
-	//	zi = tmp;
         n++;
     }
     if (is_in_set)
         mlx_pixel_put(f->mlx, f->win, x, y, 0x9E114B);
     return (n);
 }
-/*
-    double zr;
-    double zi;
-
-    zr = cr; // zr represents the real part of z
-    zi = ci; // zi represents the imaginary part of z
-
-  
-    iteration = 0
-    max_iteration = 1000
-  
-    while (zr*zr + zi*zi < 4  AND  iteration < max_iteration) 
-    {
-        xtemp = zr * zr - zi * zi + cr
-        zi = -2 * zr * zi + ci
-        zr = xtemp
-*/
