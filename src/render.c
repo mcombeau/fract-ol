@@ -1,6 +1,32 @@
 # include "../includes/fractol.h"
 
-// Need color selection function
+void    set_colors(t_fractol *f, int r, int g, int b)
+{
+    int i;
+    int c;
+
+    i = -1;
+    while (++i <= MAX_ITERATIONS)
+    {
+        c = (i * 255 / (MAX_ITERATIONS));
+        f->color_scheme[i] = 0;
+        if (r)
+            f->color_scheme[i] += 256 * 256 * c;
+        if (g)
+            f->color_scheme[i] += 256 * c;
+        if (b)
+            f->color_scheme[i] += c;
+    }
+    f->color_scheme[MAX_ITERATIONS] = 0;
+}
+
+void    set_pixel(t_fractol *f, int x, int y, int color)
+{
+    f->buf[x * 4 + WIDTH * y * 4] = color;
+	f->buf[x * 4 + WIDTH * y * 4 + 1] = color >> 8;
+	f->buf[x * 4 + WIDTH * y * 4 + 2] = color >> 16;
+	f->buf[x * 4 + WIDTH * y * 4 + 3] = color >> 24;
+}
 
 void    render(t_fractol *f)
 {
@@ -21,15 +47,17 @@ void    render(t_fractol *f)
             cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
             ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
             if (f->set == MANDELBROT)
-                mandelbrot(f, cr, ci, x, y);
+                nb_iter = mandelbrot(f, cr, ci, x, y);
             else if (f->set == JULIA)
-                julia(f, cr, ci, f->cr, f->ci, x, y);
+                nb_iter = julia(f, cr, ci, f->cr, f->ci, x, y);
             else if (f->set == BURNING_SHIP)
-                burning_ship(f, cr, ci, x, y);
+                nb_iter = burning_ship(f, cr, ci, x, y);
             else if (f->set == TRICORN)
-                tricorn(f, cr, ci, x, y);
+                nb_iter = tricorn(f, cr, ci, x, y);
+            set_pixel(f, x, y, f->color_scheme[nb_iter]);
             x++;
         }
         y++;
     }
+    mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }
