@@ -7,10 +7,8 @@ int    julia_shift(int x, int y, t_fractol *f)
 {
     if (f->julia_toggle == 1)
     {
-        f->cr = f->min_r + f->max_r * (double)x / WIDTH;
-        f->ci = f->min_i + f->max_r * (double)y /HEIGHT;
-    //    f->cr = -1.5 + 2.5 * (double)x / WIDTH;
-    //    f->ci = -1 + 2 * (double)y / HEIGHT;
+        f->cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
+        f->ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
         printf("Julia: cr = %f, ci = %f\n", f->cr, f->ci);
         render(f);
     }

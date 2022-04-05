@@ -57,8 +57,8 @@ void    init(t_fractol *f, char **av)
     f->min_i = -1.5;
     f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
     f->julia_toggle = 1;
-    f->cr = -0.472;
-    f->ci = -0.568;
+    f->cr = -0.766667;
+    f->ci = -0.090000;
     init_img(f);
     set_colors(f, 76, 0, 159);
 }
