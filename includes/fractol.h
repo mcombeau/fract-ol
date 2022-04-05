@@ -50,7 +50,8 @@ typedef struct  s_fractol
     double  max_i;
     double  cr;
     double  ci;
-    int     *color_scheme;
+    int     *colors;
+    int     color;
     int     julia_toggle;
 }   t_fractol;
 
@@ -62,7 +63,11 @@ int tricorn(t_fractol *f, double cr, double ci);
 
 /*  Draw    */
 void    render(t_fractol *f);
-void    set_colors(t_fractol *f, int r, int g, int b);
+void    change_color(t_fractol *f);
+void    set_color_scheme(t_fractol *f, int r, int g, int b);
+void    set_color_random(t_fractol *f);
+void    set_color_opposites(t_fractol *f, int color);
+void    set_color_zebra(t_fractol *f, int color);
 int    julia_shift(int x, int y, t_fractol *f);
 
 /*  Events   */
@@ -70,6 +75,7 @@ int key_event(int keycode, t_fractol *mlx);
 int mouse_event(int keycode, int x, int y, t_fractol *mlx);
 
 /*  Utils   */
+void    init_img(t_fractol *f);
 int    end_fractol(t_fractol *mlx);
 void    exit_error(int error_code);
 int     msg(char *str1, char *str2, int errno);

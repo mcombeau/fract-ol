@@ -27,8 +27,8 @@ void    init_img(t_fractol *f)
     int     endian;
     char    *buf;
 
-    f->color_scheme = malloc(sizeof(int) * MAX_ITERATIONS + 1);
-    if (!(f->color_scheme))
+    f->colors = malloc(sizeof(int) * MAX_ITERATIONS + 1);
+    if (!(f->colors))
     {
         exit(msg("Error initializing color scheme.", "", 1));
     }
@@ -36,11 +36,12 @@ void    init_img(t_fractol *f)
     if (!(f->img))
     {
         mlx_destroy_window(f->mlx, f->win);
-        free(f->color_scheme);
+        free(f->colors);
         exit(msg("image creation error.", "", 1));
     }
     buf = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
     f->buf = buf;
+    printf("pixels_per_bits = %d\n", pixel_bits);
 }
 
 void    init(t_fractol *f, char **av)
@@ -60,7 +61,8 @@ void    init(t_fractol *f, char **av)
     f->cr = -0.766667;
     f->ci = -0.090000;
     init_img(f);
-    set_colors(f, 76, 0, 159);
+    f->color = -1;
+    change_color(f);
 }
 
 int mouse_detection_test(int x, int y, t_fractol *mlx)

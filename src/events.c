@@ -44,12 +44,12 @@ void    move(t_fractol *f, double distance, char direction)
 
 int key_event(int keycode, t_fractol *mlx)
 {
-   char *keycode_str;
+/*   char *keycode_str;
 
    keycode_str = ft_itoa(keycode);
    ft_putendl_fd(keycode_str, 2);
    free(keycode_str);
-    if (keycode == KEY_ESC)
+*/    if (keycode == KEY_ESC)
     {
         end_fractol(mlx);
         return (0);
@@ -66,6 +66,8 @@ int key_event(int keycode, t_fractol *mlx)
         move(mlx, 0.2, 'L');
     else if (keycode == KEY_RIGHT || keycode == KEY_D)
         move(mlx, 0.2, 'R');
+    else if (keycode == KEY_SPACE)
+        change_color(mlx);
     else
         return (0);
     render(mlx);
