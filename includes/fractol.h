@@ -63,11 +63,10 @@ int tricorn(t_fractol *f, double cr, double ci);
 
 /*  Draw    */
 void    render(t_fractol *f);
-void    change_color(t_fractol *f);
-void    set_color_scheme(t_fractol *f, int r, int g, int b);
-void    set_color_random(t_fractol *f);
+void    color_shift(t_fractol *f);
 void    set_color_opposites(t_fractol *f, int color);
 void    set_color_zebra(t_fractol *f, int color);
+void    set_color_mono(t_fractol *f, int color);
 int    julia_shift(int x, int y, t_fractol *f);
 
 /*  Events   */

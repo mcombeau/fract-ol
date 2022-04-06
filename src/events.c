@@ -67,7 +67,7 @@ int key_event(int keycode, t_fractol *mlx)
     else if (keycode == KEY_RIGHT || keycode == KEY_D)
         move(mlx, 0.2, 'R');
     else if (keycode == KEY_SPACE)
-        change_color(mlx);
+        color_shift(mlx);
     else
         return (0);
     render(mlx);

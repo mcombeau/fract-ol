@@ -62,7 +62,7 @@ void    init(t_fractol *f, char **av)
     f->ci = -0.090000;
     init_img(f);
     f->color = -1;
-    change_color(f);
+    color_shift(f);
 }
 
 int mouse_detection_test(int x, int y, t_fractol *mlx)

@@ -21,6 +21,7 @@ SRC			=	fractol.c \
 				utils.c \
 				events.c \
 				render.c \
+				color.c \
 				fractal_sets/mandelbrot.c \
 				fractal_sets/julia.c \
 				fractal_sets/burning_ship.c \
