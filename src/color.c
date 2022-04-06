@@ -36,9 +36,6 @@ void    set_color_mono(t_fractol *f, int color)
 void    set_color_zebra(t_fractol *f, int color)
 {
     int i;
-    int r;
-    int g;
-    int b;
     int op_color;
 
     op_color = (color & 0x000000) | (~color & 0xFFFFFF);
@@ -67,7 +64,12 @@ void    set_color_zebra(t_fractol *f, int color)
         0x9966FF: purple, recults in orange/green/purple scheme
         0x33FF33: green, results in purple/green scheme
         0xFF6666: red, results in red/bluegreen scheme
-        0xCCCC00: yellow, results in yellow/blye scheme.
+        0xCCCC00: yellow, results in yellow/blue scheme.
+*/
+/*
+    Work on this function, gives weird results with edge cases like
+        FF00FF FF0000 0000FF etc.
+    Limit the F side, or modulo maybe.
 */
 void    set_color_opposites(t_fractol *f, int color)
 {
@@ -91,6 +93,31 @@ void    set_color_opposites(t_fractol *f, int color)
     f->color_palette[MAX_ITERATIONS] = 0;
 }
 
+void    set_color_contrasted(t_fractol *f, int color)
+{
+    int i;
+    int r;
+    int g;
+    int b;
+
+    r = (color >> 16) & 0xFF;
+    g = (color >> 8) & 0xFF;
+    b = (color >> 0) & 0xFF;
+    i = -1;
+    while (++i <= MAX_ITERATIONS)
+    {
+        f->color_palette[i] = 0;
+        if (r != 0xFF)
+            r += i % 0xFF;
+        if (g != 0xFF)
+            g += i % 0xFF;
+        if (b != 0xFF)
+            b += i % 0xFF;
+        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
+    }
+    f->color_palette[MAX_ITERATIONS] = 0;
+}
+
 void    set_color_graphic(t_fractol *f, int color)
 {
     int i;
@@ -105,9 +132,12 @@ void    set_color_graphic(t_fractol *f, int color)
     i = -1;
     while (r < 0x33 || g < 0x33 || b < 0x33)
     {
-        r ++;
-        g ++;
-        b ++;
+        if (r != 0xFF)
+            r++;
+        if (g != 0xFF)
+            g++;
+        if (b != 0xFF)
+            b++;
     }
     while (++i <= MAX_ITERATIONS)
     {
@@ -120,15 +150,44 @@ void    set_color_graphic(t_fractol *f, int color)
     f->color_palette[MAX_ITERATIONS] = 0;
 }
 
+void	set_color_rainbow(t_fractol *f)
+{
+	int	i;
+	int	n;
+
+	i = -1;
+	while (++i <= MAX_ITERATIONS)
+	{
+		n = 1535 - (i * 1535 / (MAX_ITERATIONS));
+		if (n < 256)
+			f->color_palette[i] = 256 * 256 * 255 + n % 256;
+		else if (n < 512)
+			f->color_palette[i] = 256 * 256 * (255 - (n % 256)) + 255;
+		else if (n < 768)
+			f->color_palette[i] = 256 * (n % 256) + 255;
+		else if (n < 1024)
+			f->color_palette[i] = 256 * 255 + (255 - (n % 256));
+		else if (n < 1280)
+			f->color_palette[i] = 256 * 256 * (n % 256) + 256 * 255;
+		else
+			f->color_palette[i] = 256 * 256 * 255 + 256 * (255 - (n % 256));
+	}
+	f->color_palette[MAX_ITERATIONS] = 0;
+}
+
 void    color_shift(t_fractol *f)
 {
-    f->color_pattern = (f->color_pattern + 1) % 4;
+    f->color_pattern = (f->color_pattern + 1) % 6;
     if (f->color_pattern == 0)
         set_color_mono(f, f->color);
     else if (f->color_pattern == 1)
-        set_color_opposites(f, f->color);
+        set_color_contrasted(f, f->color);
     else if (f->color_pattern == 2)
-        set_color_graphic(f, f->color);
+        set_color_opposites(f, f->color);
     else if (f->color_pattern == 3)
+        set_color_graphic(f, f->color);
+    else if (f->color_pattern == 4)
         set_color_zebra(f, f->color);
+    else if (f->color_pattern == 5)
+        set_color_rainbow(f);
 }
