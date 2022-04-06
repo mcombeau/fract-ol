@@ -50,7 +50,8 @@ typedef struct  s_fractol
     double  max_i;
     double  cr;
     double  ci;
-    int     *colors;
+    int     *color_palette;
+    int     color_pattern;
     int     color;
     int     julia_toggle;
 }   t_fractol;
@@ -75,6 +76,7 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx);
 
 /*  Utils   */
 void    init_img(t_fractol *f);
+void    get_color_arg(t_fractol *f, char **av);
 int    end_fractol(t_fractol *mlx);
 void    exit_error(int error_code);
 int     msg(char *str1, char *str2, int errno);

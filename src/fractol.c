@@ -27,8 +27,8 @@ void    init_img(t_fractol *f)
     int     endian;
     char    *buf;
 
-    f->colors = malloc(sizeof(int) * MAX_ITERATIONS + 1);
-    if (!(f->colors))
+    f->color_palette = malloc(sizeof(int) * MAX_ITERATIONS + 1);
+    if (!(f->color_palette))
     {
         exit(msg("Error initializing color scheme.", "", 1));
     }
@@ -36,7 +36,7 @@ void    init_img(t_fractol *f)
     if (!(f->img))
     {
         mlx_destroy_window(f->mlx, f->win);
-        free(f->colors);
+        free(f->color_palette);
         exit(msg("image creation error.", "", 1));
     }
     buf = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
@@ -46,7 +46,6 @@ void    init_img(t_fractol *f)
 
 void    init(t_fractol *f, char **av)
 {
-    get_set(f, av);
     f->mlx = mlx_init();
     if (!f->mlx)
         exit_error(msg("MLX: error connecting to mlx.", "", 1));
@@ -61,7 +60,7 @@ void    init(t_fractol *f, char **av)
     f->cr = -0.766667;
     f->ci = -0.090000;
     init_img(f);
-    f->color = -1;
+    f->color_pattern = -1;
     color_shift(f);
 }
 
@@ -76,11 +75,16 @@ int main(int ac, char **av)
 {
     t_fractol f;
 
-    if (ac != 2)
+    if (ac < 2 || ac > 3)
     {
         help_msg();
         exit(0);
     }
+    get_set(&f, av);
+    if (ac == 3)
+        get_color_arg(&f, av);
+    else
+        f.color = 0x00FF80;
     init(&f, av);
     render(&f);
     mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);

@@ -19,7 +19,7 @@ void    set_color_mono(t_fractol *f, int color)
         r += ((color >> 16) & 0xFF) / (MAX_ITERATIONS / 2);
         g += ((color >> 8) & 0xFF) / (MAX_ITERATIONS / 2);
         b += ((color >> 0) & 0xFF) / (MAX_ITERATIONS / 2);
-        f->colors[i] = 0xFF << 24 | r << 16 | g << 8 | b;
+        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
         i++;
     }
     while (i <= MAX_ITERATIONS)
@@ -27,10 +27,10 @@ void    set_color_mono(t_fractol *f, int color)
         r += (0xFF - r) / MAX_ITERATIONS;
         g += (0xFF - g) / MAX_ITERATIONS;
         b += (0xFF - b) / MAX_ITERATIONS;
-        f->colors[i] = 0xFF << 24 | r << 16 | g << 8 | b;
+        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
         i++;
     }
-    f->colors[MAX_ITERATIONS] = 0;
+    f->color_palette[MAX_ITERATIONS] = 0;
 }
 
 void    set_color_zebra(t_fractol *f, int color)
@@ -42,20 +42,19 @@ void    set_color_zebra(t_fractol *f, int color)
     int op_color;
 
     op_color = (color & 0x000000) | (~color & 0xFFFFFF);
-    printf("Color = %X\nOpposite color = %X\n", color, op_color);
     i = 0;
     while (i <= MAX_ITERATIONS)
     {
-        f->colors[i] = op_color;
+        f->color_palette[i] = op_color;
         i = i + 2;
     }
     i = 1;
     while (i <= MAX_ITERATIONS)
     {
-        f->colors[i] = color;
+        f->color_palette[i] = color;
         i = i + 2;
     }
-    f->colors[MAX_ITERATIONS] = 0;
+    f->color_palette[MAX_ITERATIONS] = 0;
 }
 
 /* set_color_opposites:
@@ -83,13 +82,13 @@ void    set_color_opposites(t_fractol *f, int color)
     i = -1;
     while (++i <= MAX_ITERATIONS)
     {
-        f->colors[i] = 0;
+        f->color_palette[i] = 0;
         r += i % 0xFF;
         g += i % 0xFF;
         b += i % 0xFF;
-        f->colors[i] = 0xFF << 24 | r << 16 | g << 8 | b;
+        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
     }
-    f->colors[MAX_ITERATIONS] = 0;
+    f->color_palette[MAX_ITERATIONS] = 0;
 }
 
 void    set_color_graphic(t_fractol *f, int color)
@@ -112,26 +111,24 @@ void    set_color_graphic(t_fractol *f, int color)
     }
     while (++i <= MAX_ITERATIONS)
     {
-        f->colors[i] = 0;
+        f->color_palette[i] = 0;
         r -= i % 0xFF;
         g -= i % 0xFF;
         b -= i % 0xFF;
-        f->colors[i] = 0xFF << 24 | r << 16 | g << 8 | b;
+        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
     }
-    f->colors[MAX_ITERATIONS] = 0;
+    f->color_palette[MAX_ITERATIONS] = 0;
 }
 
 void    color_shift(t_fractol *f)
 {
-    f->color = (f->color + 1) % 5;
-    if (f->color == 0)
-        set_color_mono(f, 0x000000);
-    else if (f->color == 1)
-        set_color_opposites(f, 0x000000);
-    else if (f->color == 2)
-        set_color_graphic(f, 0x000000);
-    else if (f->color == 3)
-        set_color_zebra(f, 0x000000);
-    else if (f->color == 4)
-        set_color_zebra2(f, 0x000000);
+    f->color_pattern = (f->color_pattern + 1) % 4;
+    if (f->color_pattern == 0)
+        set_color_mono(f, f->color);
+    else if (f->color_pattern == 1)
+        set_color_opposites(f, f->color);
+    else if (f->color_pattern == 2)
+        set_color_graphic(f, f->color);
+    else if (f->color_pattern == 3)
+        set_color_zebra(f, f->color);
 }

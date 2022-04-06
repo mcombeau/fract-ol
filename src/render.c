@@ -47,7 +47,7 @@ void    render(t_fractol *f)
                 nb_iter = burning_ship(f, cr, ci);
             else if (f->set == TRICORN)
                 nb_iter = tricorn(f, cr, ci);
-            set_pixel_color(f, x, y, f->colors[nb_iter]);
+            set_pixel_color(f, x, y, f->color_palette[nb_iter]);
             x++;
         }
         y++;
