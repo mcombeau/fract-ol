@@ -1,34 +1,76 @@
 # include "../includes/fractol.h"
 
 
-//Good mono colors : 0xCC6600 (orange), 0x00ff80 (green)
+// Interpolation = (endValue - startValue) * stepNumber / lastStepNumber + startValue
+int interpolate(int startcolor, int endcolor, double fraction)
+{
+    int start_r;
+    int start_g;
+    int start_b;
+    int end_r;
+    int end_g;
+    int end_b;
 
+    start_r = ((startcolor >> 16) & 0xFF);
+    start_g = ((startcolor >> 8) & 0xFF);
+    start_b = ((startcolor >> 0) & 0xFF);
+    end_r = ((endcolor >> 16) & 0xFF);
+    end_g = ((endcolor >> 8) & 0xFF);
+    end_b = ((endcolor >> 0) & 0xFF);
+    start_r = (end_r - start_r) * fraction + start_r;
+    start_g = (end_g - start_g) * fraction + start_g;
+    start_b = (end_b - start_b) * fraction +start_b;
+    return (0xFF << 24 | start_r << 16 | start_g << 8 | start_b);
+}
+
+//Good mono colors : 0xCC6600 (orange), 0x00ff80 (green)
 void    set_color_mono(t_fractol *f, int color)
 {
     int i;
-    int r;
-    int g;
-    int b;
+    int j;
+    double fraction;
+    int color1;
+    int color2;
 
-    r = 0;
-    g = 0;
-    b = 0;
+    color1 = 0x000000;
+    color2 = color;
     i = 0;
-    while (i <= (MAX_ITERATIONS / 2))
+    while (i < MAX_ITERATIONS)
     {
-        r += ((color >> 16) & 0xFF) / (MAX_ITERATIONS / 2);
-        g += ((color >> 8) & 0xFF) / (MAX_ITERATIONS / 2);
-        b += ((color >> 0) & 0xFF) / (MAX_ITERATIONS / 2);
-        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
-        i++;
+        j = 0;
+        while (j < MAX_ITERATIONS / 2)
+        {
+            fraction = (double)j / (MAX_ITERATIONS / 2);
+            f->color_palette[i + j] = interpolate(color1, color2, fraction);
+            j++;
+        }
+        color1 = color;
+        color2 = 0xFFFFFF;
+        i += j;
     }
+    f->color_palette[MAX_ITERATIONS] = 0;
+}
+
+void    set_color_multiple(t_fractol *f, int colors[4], int n)
+{
+    int i;
+    int j;
+    int x;
+    double fraction;
+
+    i = 0;
+    x = 0;
     while (i <= MAX_ITERATIONS)
     {
-        r += (0xFF - r) / MAX_ITERATIONS;
-        g += (0xFF - g) / MAX_ITERATIONS;
-        b += (0xFF - b) / MAX_ITERATIONS;
-        f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
-        i++;
+        j = 0;
+        while ((i + j) <= MAX_ITERATIONS && j < (MAX_ITERATIONS / (n - 1)))
+        {
+            fraction = (double)j / (MAX_ITERATIONS / (n - 1));
+            f->color_palette[i + j] = interpolate(colors[x], colors[x + 1], fraction);
+            j++;
+        }
+        x++;
+        i += j;
     }
     f->color_palette[MAX_ITERATIONS] = 0;
 }
@@ -150,44 +192,23 @@ void    set_color_graphic(t_fractol *f, int color)
     f->color_palette[MAX_ITERATIONS] = 0;
 }
 
-void	set_color_rainbow(t_fractol *f)
-{
-	int	i;
-	int	n;
-
-	i = -1;
-	while (++i <= MAX_ITERATIONS)
-	{
-		n = 1535 - (i * 1535 / (MAX_ITERATIONS));
-		if (n < 256)
-			f->color_palette[i] = 256 * 256 * 255 + n % 256;
-		else if (n < 512)
-			f->color_palette[i] = 256 * 256 * (255 - (n % 256)) + 255;
-		else if (n < 768)
-			f->color_palette[i] = 256 * (n % 256) + 255;
-		else if (n < 1024)
-			f->color_palette[i] = 256 * 255 + (255 - (n % 256));
-		else if (n < 1280)
-			f->color_palette[i] = 256 * 256 * (n % 256) + 256 * 255;
-		else
-			f->color_palette[i] = 256 * 256 * 255 + 256 * (255 - (n % 256));
-	}
-	f->color_palette[MAX_ITERATIONS] = 0;
-}
-
 void    color_shift(t_fractol *f)
 {
-    f->color_pattern = (f->color_pattern + 1) % 6;
+    f->color_pattern = (f->color_pattern + 1) % 7;
     if (f->color_pattern == 0)
-        set_color_mono(f, f->color);
+        set_color_multiple(f, (int[4]){0x000000, 0xFF0000, 0x00FF00, 0xFFFFFF}, 4);
     else if (f->color_pattern == 1)
-        set_color_contrasted(f, f->color);
+        set_color_multiple(f, (int[8]){0xFF0000, 0xFF7F00, 0xFFFF00, 
+                                        0x00FF00, 0x0000FF, 0x4B0082, 
+                                        0x9400D3, 0xFFFFFF}, 8);
     else if (f->color_pattern == 2)
-        set_color_opposites(f, f->color);
+        set_color_contrasted(f, f->color);
     else if (f->color_pattern == 3)
-        set_color_graphic(f, f->color);
+        set_color_opposites(f, f->color);
     else if (f->color_pattern == 4)
-        set_color_zebra(f, f->color);
+        set_color_graphic(f, f->color);
     else if (f->color_pattern == 5)
-        set_color_rainbow(f);
+        set_color_zebra(f, f->color);
+    else if (f->color_pattern == 6)
+        set_color_mono(f, f->color);
 }
