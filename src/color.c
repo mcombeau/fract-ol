@@ -1,5 +1,36 @@
 # include "../includes/fractol.h"
 
+/*
+NOTES:
+
+Complementary
+A complementary color scheme is a two-color combination consisting of a base color (H0) and another color (H1) that is 180 degrees apart from H0 on the color wheel.
+
+formula: H1 = |(H0 + 180 degrees) - 360 degrees|
+Split Complementary
+A split-complementary color scheme is a three-color combination that consists of a base color (H0) and two colors (H1 and H2) that are 150 degrees and 210 degrees apart from H0 respectively.
+
+formula: H1 = |(H0 + 150 degrees) - 360 degrees|
+formula: H2 = |(H0 + 210 degrees) - 360 degrees|
+Triadic
+This is a three-color combination that consists of a base color (H0) and two colors (H1 and H2) that are 120 degrees and 240 degrees apart from H0 respectively.
+
+formula: H1 = |(H0 + 120 degrees) - 360 degrees|
+formula: H2 = |(H0 + 240 degrees) - 360 degrees|
+Tetradic
+A four-color combination that consists of a base color (H0) and three colors (H1, H2, and H3) that are 90 degrees, 180 degrees, and 270 degrees apart from H0 respectively.
+
+formula: H1 = |(H0 + 90 degrees) - 360 degrees|
+formula: H2 = |(H0 + 180 degrees) - 360 degrees|
+formula: H3 = |(H0 + 270 degrees) - 360 degrees|
+Analagous
+Analagous color schemes use a combination consisting of a base color (H0) and one or more adjacent colors (30 degrees apart) on the color wheel.
+
+formula: H1 = |(H0 + 30 degrees) - 360 degrees|
+formula: H2 = |(H0 + 60 degrees) - 360 degrees|
+formula: H3 = |(H0 + 90 degrees) - 360 degrees|
+
+*/
 
 // Interpolation = (endValue - startValue) * stepNumber / lastStepNumber + startValue
 int interpolate(int startcolor, int endcolor, double fraction)
