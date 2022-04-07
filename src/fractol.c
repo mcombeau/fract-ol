@@ -75,16 +75,13 @@ int main(int ac, char **av)
 {
     t_fractol f;
 
-    if (ac < 2 || ac > 3)
+    if (ac < 2 || ac > 4)
     {
         help_msg();
         exit(0);
     }
     get_set(&f, av);
-    if (ac == 3)
-        get_color_arg(&f, av);
-    else
-        f.color = 0x00FF80;
+    get_colors(&f, ac, av);
     init(&f, av);
     render(&f);
     mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);

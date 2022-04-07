@@ -75,24 +75,63 @@ void    set_color_multiple(t_fractol *f, int colors[4], int n)
     f->color_palette[MAX_ITERATIONS] = 0;
 }
 
-void    set_color_zebra(t_fractol *f, int color)
+// Triad color 1 is 33% away from original color
+// Triad color 2 is 66% away from original color
+int get_percent_color(int color, double percent)
+{
+    int r;
+    int g;
+    int b;
+    int tr;
+    int tg;
+    int tb;
+    double percentage;
+    
+    printf("Get triad...\n");
+    r = (color >> 16) & 0xFF;
+    g = (color >> 8) & 0xFF;
+    b = (color >> 0) & 0xFF;
+    printf("\tColor r = %x, g = %x, b = %x\n", r, g, b);
+    percentage = (percent / 100) * 256;
+    printf("\tPercent = %f\n", percent);
+    printf("\tPercentage = %f\n", percentage);
+    tr = (r + percentage) - 256;
+    tg = (g + percentage) - 256;
+    tb = (b + percentage) - 256;
+    printf("\tr + percentage = %x\n\tg + percentage = %x\n\tb + percentage = %x\n", tr, tg, tb);
+    return (0xFF << 24 | tr << 16 | tg << 8 | tb);
+}
+
+void    fill_color(t_fractol *f, int color, int stripe)
 {
     int i;
-    int op_color;
 
-    op_color = (color & 0x000000) | (~color & 0xFFFFFF);
     i = 0;
-    while (i <= MAX_ITERATIONS)
-    {
-        f->color_palette[i] = op_color;
-        i = i + 2;
-    }
-    i = 1;
-    while (i <= MAX_ITERATIONS)
+    while (i < MAX_ITERATIONS)
     {
         f->color_palette[i] = color;
-        i = i + 2;
+        i += stripe;
     }
+}
+
+void    set_color_zebra(t_fractol *f, int color, int color2)
+{
+    fill_color(f, color, 1);
+    fill_color(f, color2, 2);
+    f->color_palette[MAX_ITERATIONS] = 0;
+}
+
+void    set_color_triad(t_fractol *f, int color)
+{
+    int i;
+    int triad[2];
+
+    triad[0] = get_percent_color(color, 33);
+    triad[1] = get_percent_color(color, 66);
+    printf("Color =\t%#.6x\nTriad 1 =\t%#.6x\nTriad 2 =\t%#.6x\n", color, triad[0], triad[1]);
+    fill_color(f, color, 1);
+    fill_color(f, triad[0], 2);
+    fill_color(f, triad[1], 3);
     f->color_palette[MAX_ITERATIONS] = 0;
 }
 
@@ -194,21 +233,23 @@ void    set_color_graphic(t_fractol *f, int color)
 
 void    color_shift(t_fractol *f)
 {
-    f->color_pattern = (f->color_pattern + 1) % 7;
+    f->color_pattern = (f->color_pattern + 1) % 8;
     if (f->color_pattern == 0)
-        set_color_multiple(f, (int[4]){0x000000, 0xFF0000, 0x00FF00, 0xFFFFFF}, 4);
+        set_color_triad(f, f->main_color);
     else if (f->color_pattern == 1)
+        set_color_mono(f, f->main_color);
+    else if (f->color_pattern == 2)
+        set_color_multiple(f, (int[4]){0x000000, f->main_color, f->second_color, 0xFFFFFF}, 4);
+    else if (f->color_pattern == 3)
+        set_color_zebra(f, f->main_color, f->second_color);
+    else if (f->color_pattern == 4)
+        set_color_contrasted(f, f->main_color);
+    else if (f->color_pattern == 5)
+        set_color_opposites(f, f->main_color);
+    else if (f->color_pattern == 6)
+        set_color_graphic(f, f->main_color);
+    else if (f->color_pattern == 7)
         set_color_multiple(f, (int[8]){0xFF0000, 0xFF7F00, 0xFFFF00, 
                                         0x00FF00, 0x0000FF, 0x4B0082, 
                                         0x9400D3, 0xFFFFFF}, 8);
-    else if (f->color_pattern == 2)
-        set_color_contrasted(f, f->color);
-    else if (f->color_pattern == 3)
-        set_color_opposites(f, f->color);
-    else if (f->color_pattern == 4)
-        set_color_graphic(f, f->color);
-    else if (f->color_pattern == 5)
-        set_color_zebra(f, f->color);
-    else if (f->color_pattern == 6)
-        set_color_mono(f, f->color);
 }

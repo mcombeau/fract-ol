@@ -52,7 +52,8 @@ typedef struct  s_fractol
     double  ci;
     int     *color_palette;
     int     color_pattern;
-    int     color;
+    int     main_color;
+    int     second_color;
     int     julia_toggle;
 }   t_fractol;
 
@@ -66,7 +67,7 @@ int tricorn(t_fractol *f, double cr, double ci);
 void    render(t_fractol *f);
 void    color_shift(t_fractol *f);
 void    set_color_opposites(t_fractol *f, int color);
-void    set_color_zebra(t_fractol *f, int color);
+void    set_color_zebra(t_fractol *f, int color, int color2);
 void    set_color_mono(t_fractol *f, int color);
 int    julia_shift(int x, int y, t_fractol *f);
 
@@ -76,7 +77,8 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx);
 
 /*  Utils   */
 void    init_img(t_fractol *f);
-void    get_color_arg(t_fractol *f, char **av);
+void    get_colors(t_fractol *f, int ac, char **av);
+int    get_color_arg(t_fractol *f, char *color);
 int    end_fractol(t_fractol *mlx);
 void    exit_error(int error_code);
 int     msg(char *str1, char *str2, int errno);
