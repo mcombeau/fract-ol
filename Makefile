@@ -22,6 +22,7 @@ SRC			=	fractol.c \
 				events.c \
 				render.c \
 				color.c \
+				color_utils.c \
 				get_hex_color.c \
 				fractal_sets/mandelbrot.c \
 				fractal_sets/julia.c \

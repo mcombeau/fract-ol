@@ -82,6 +82,8 @@ void    set_color_opposites(t_fractol *f, int color);
 void    set_color_zebra(t_fractol *f, int color, int color2);
 void    set_color_mono(t_fractol *f, int color);
 int    julia_shift(int x, int y, t_fractol *f);
+void    fill_color(t_fractol *f, int color, int stripe);
+int get_percent_color(int color, double percent);
 
 /*  Events   */
 int key_event(int keycode, t_fractol *mlx);
