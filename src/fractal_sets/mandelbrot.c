@@ -6,7 +6,7 @@
 /*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:11 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 13:37:15 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/08 15:54:05 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,30 @@
     See:    http://warp.povusers.org/Mandelbrot/
             https://www.mathsisfun.com/algebra/complex-number-multiply.html
 */
-
 /* mandelbrot:
     Checks whether a point is part of the mandelbrot set or not.
     Takes as parameters the real and imaginary coordinates of a point,
     converted previously from a pixel's coordinates.
     Here we color any pixel which is part of the mandelbrot set.
 */
-int mandelbrot(t_fractol *f, double cr, double ci)
+int	mandelbrot(t_fractol *f, double cr, double ci)
 {
-    int     n;
-    double  zr;
-    double  zi;
-    double  tmp;
+	int		n;
+	double	zr;
+	double	zi;
+	double	tmp;
 
-    zr = 0;
-    zi = 0;
-    n = 0;
-    while (n < MAX_ITERATIONS)
-    {
-        if ((zr * zr + zi * zi) > 4.0)
-            break;
-        tmp = 2 * zr * zi + ci;
+	zr = 0;
+	zi = 0;
+	n = 0;
+	while (n < MAX_ITERATIONS)
+	{
+		if ((zr * zr + zi * zi) > 4.0)
+			break ;
+		tmp = 2 * zr * zi + ci;
 		zr = zr * zr - zi * zi + cr;
 		zi = tmp;
-        n++;
-    }
-    return (n);
+		n++;
+	}
+	return (n);
 }
