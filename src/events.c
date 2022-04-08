@@ -113,11 +113,11 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx)
     {
         if (mlx->set == JULIA)
             julia_shift(x, y, mlx);
- /*       if (mlx->julia_toggle == 1)
+/*        if (mlx->julia_toggle == 1)
             mlx->julia_toggle = 0;
         else
             mlx->julia_toggle = 1;
- */   }
+*/    }
     else
         return(0);
     render(mlx);
