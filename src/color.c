@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
+/*   Updated: 2022/04/08 13:35:45 by mcombeau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "../includes/fractol.h"
 
 /*
@@ -118,18 +130,13 @@ int get_percent_color(int color, double percent)
     int tb;
     double percentage;
     
-    printf("Get triad...\n");
     r = (color >> 16) & 0xFF;
     g = (color >> 8) & 0xFF;
     b = (color >> 0) & 0xFF;
-    printf("\tColor r = %x, g = %x, b = %x\n", r, g, b);
     percentage = (percent / 100) * 256;
-    printf("\tPercent = %f\n", percent);
-    printf("\tPercentage = %f\n", percentage);
     tr = (r + percentage) - 256;
     tg = (g + percentage) - 256;
     tb = (b + percentage) - 256;
-    printf("\tr + percentage = %x\n\tg + percentage = %x\n\tb + percentage = %x\n", tr, tg, tb);
     return (0xFF << 24 | tr << 16 | tg << 8 | tb);
 }
 
