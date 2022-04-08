@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 16:16:31 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/08 19:19:31 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 //Good mono colors : 0xCC6600 (orange), 0x00ff80 (green)
 void    set_color_mono(t_fractol *f, int color)
 {
-	int i;
-	int j;
-	double fraction;
-	int color1;
-	int color2;
+	int		i;
+	int		j;
+	double	fraction;
+	int		color1;
+	int		color2;
 
 	color1 = 0x000000;
 	color2 = color;
