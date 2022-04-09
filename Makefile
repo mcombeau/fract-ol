@@ -16,7 +16,6 @@ LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
 # Includes
-INC_PATH	=	./includes/
 INC			=	-I ./includes/\
 				-I ./libft/\
 				-I ./minilibx-linux/
