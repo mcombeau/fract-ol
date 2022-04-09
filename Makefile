@@ -15,8 +15,14 @@ LIBFT_PATH	= libft/
 LIBFT_NAME	= libft.a
 LIBFT		= $(LIBFT_PATH)$(LIBFT_NAME)
 
+# Includes
+INC_PATH	=	./includes/
+INC			=	-I ./includes/\
+				-I ./libft/\
+				-I ./minilibx-linux/
+
 # Sources
-SRC_PATH	= src/
+SRC_PATH	=	src/
 SRC			=	fractol.c \
 				utils.c \
 				events.c \
@@ -39,7 +45,7 @@ OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 all: $(MLX) $(LIBFT) $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 $(OBJS): $(OBJ_PATH)
 
@@ -57,7 +63,7 @@ $(LIBFT):
 
 $(NAME): $(OBJS)
 	@echo "Compiling fractol..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) -lXext -lX11 -lm
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm
 	@echo "Fractol ready."
 
 bonus: all

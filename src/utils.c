@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:53 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 16:21:56 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:14:01 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-# include "../includes/fractol.h"
+# include "fractol.h"
 
 void	exit_error(int error_code)
 {

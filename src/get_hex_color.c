@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_hex_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 16:20:44 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:05 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 void	get_colors(t_fractol *f, int ac, char **av)
 {

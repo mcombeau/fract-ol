@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 16:19:55 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:09:52 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 
 // Need select_set function
 
@@ -33,9 +33,9 @@ void	get_set(t_fractol *f, char **av)
 
 void	init_img(t_fractol *f)
 {
-	int	 pixel_bits;
-	int	 line_bytes;
-	int	 endian;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
 	char	*buf;
 
 	f->color_palette = malloc(sizeof(int) * MAX_ITERATIONS + 1);
@@ -77,7 +77,7 @@ void	init(t_fractol *f, char **av)
 
 int main(int ac, char **av)
 {
-	t_fractol f;
+	t_fractol	f;
 
 	if (ac < 2 || ac > 4)
 	{

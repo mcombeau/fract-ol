@@ -6,11 +6,11 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 19:19:31 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:39 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/fractol.h"
+# include "fractol.h"
 
 //Good mono colors : 0xCC6600 (orange), 0x00ff80 (green)
 void    set_color_mono(t_fractol *f, int color)

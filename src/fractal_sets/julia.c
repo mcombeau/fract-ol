@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:34 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 15:51:30 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:17 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fractol.h"
+#include "fractol.h"
 
 /*
     Z = Z * Z + c

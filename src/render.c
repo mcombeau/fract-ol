@@ -6,11 +6,11 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:20 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 19:20:52 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:55 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/fractol.h"
+# include "fractol.h"
 
 
 /* set_pixel_color:
@@ -36,10 +36,10 @@ void	set_pixel_color(t_fractol *f, int x, int y, int color)
 void	render(t_fractol *f)
 {
 	int		x;
-	int y;
-	double  cr;
-	double  ci;
-	int nb_iter;
+	int		y;
+	double	cr;
+	double	ci;
+	int		nb_iter;
 
 	mlx_clear_window(f->mlx, f->win);
 	y = 0;

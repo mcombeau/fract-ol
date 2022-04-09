@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tricorn.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 15:55:38 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:30 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fractol.h"
+#include "fractol.h"
 
 int	tricorn(t_fractol *f, double cr, double ci)
 {

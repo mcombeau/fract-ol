@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:15:17 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 16:15:20 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:13:34 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fractol.h"
+#include "fractol.h"
 /*
 NOTES:
 

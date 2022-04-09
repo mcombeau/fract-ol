@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcombeau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:25 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/08 15:49:24 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:14:17 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/fractol.h"
+#include "fractol.h"
 
 /*
     Z = Z * Z + c
