@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:17:41 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:50:37 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct  s_fractol
 	int	 color_pattern;
 	int	 main_color;
 	int	 second_color;
-	int	 julia_toggle;
 }   t_fractol;
 
 /*  Sets   */

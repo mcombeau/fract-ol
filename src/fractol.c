@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:09:52 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:50:48 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	init(t_fractol *f, char **av)
 	f->max_r = 1.0;
 	f->min_i = -1.5;
 	f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
-	f->julia_toggle = 1;
 	f->cr = -0.766667;
 	f->ci = -0.090000;
 	init_img(f);

@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:34 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:17 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:50:18 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 */
 int	julia_shift(int x, int y, t_fractol *f)
 {
-	if (f->julia_toggle == 1)
-	{
-		f->cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
-		f->ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
-		printf("Julia: cr = %f, ci = %f\n", f->cr, f->ci);
-		render(f);
-	}
+	f->cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
+	f->ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
+	printf("Julia: cr = %f, ci = %f\n", f->cr, f->ci);
+	render(f);
 	return (0);
 }
 

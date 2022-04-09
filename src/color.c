@@ -6,14 +6,14 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:39 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:57:01 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
 //Good mono colors : 0xCC6600 (orange), 0x00ff80 (green)
-void    set_color_mono(t_fractol *f, int color)
+void	set_color_mono(t_fractol *f, int color)
 {
 	int		i;
 	int		j;
@@ -42,10 +42,10 @@ void    set_color_mono(t_fractol *f, int color)
 
 void	set_color_multiple(t_fractol *f, int colors[4], int n)
 {
-	int i;
-	int j;
-	int x;
-	double fraction;
+	int		i;
+	int		j;
+	int		x;
+	double	fraction;
 
 	i = 0;
 	x = 0;
@@ -73,8 +73,8 @@ void	set_color_zebra(t_fractol *f, int color, int color2)
 
 void	set_color_triad(t_fractol *f, int color)
 {
-	int i;
-	int triad[2];
+	int		i;
+	int		triad[2];
 
 	triad[0] = get_percent_color(color, 33);
 	triad[1] = get_percent_color(color, 66);
@@ -104,10 +104,10 @@ void	set_color_triad(t_fractol *f, int color)
 */
 void	set_color_opposites(t_fractol *f, int color)
 {
-	int i;
-	int r;
-	int g;
-	int b;
+	int	i;
+	int	r;
+	int	g;
+	int	b;
 
 	r = (color >> 16) & 0xFF;
 	g = (color >> 8) & 0xFF;
@@ -126,10 +126,10 @@ void	set_color_opposites(t_fractol *f, int color)
 
 void	set_color_contrasted(t_fractol *f, int color)
 {
-	int i;
-	int r;
-	int g;
-	int b;
+	int	i;
+	int	r;
+	int	g;
+	int	b;
 
 	r = (color >> 16) & 0xFF;
 	g = (color >> 8) & 0xFF;
@@ -151,10 +151,10 @@ void	set_color_contrasted(t_fractol *f, int color)
 
 void	set_color_graphic(t_fractol *f, int color)
 {
-	int i;
-	int r;
-	int g;
-	int b;
+	int	i;
+	int	r;
+	int	g;
+	int	b;
 
 	
 	r = (color >> 16) & 0xFF;
@@ -199,7 +199,7 @@ void	color_shift(t_fractol *f)
 	else if (f->color_pattern == 6)
 		set_color_graphic(f, f->main_color);
 	else if (f->color_pattern == 7)
-		set_color_multiple(f, (int[8]){0xFF0000, 0xFF7F00, 0xFFFF00, 
-						0x00FF00, 0x0000FF, 0x4B0082, 
-						0x9400D3, 0xFFFFFF}, 8);
+		set_color_multiple(f, (int[8]){0xFF0000, 0xFF7F00, 0xFFFF00,
+				0x00FF00, 0x0000FF, 0x4B0082, 
+				0x9400D3, 0xFFFFFF}, 8);
 }

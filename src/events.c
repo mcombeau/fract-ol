@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:47 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/09 14:49:57 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,7 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx)
 	{
 		if (mlx->set == JULIA)
 			julia_shift(x, y, mlx);
-/*		if (mlx->julia_toggle == 1)
-			mlx->julia_toggle = 0;
-		else
-			mlx->julia_toggle = 1;
-*/	}
+	}
 	else
 		return(0);
 	render(mlx);
