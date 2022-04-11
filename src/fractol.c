@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:50:48 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/11 16:33:12 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	init_img(t_fractol *f)
 	}
 	buf = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
 	f->buf = buf;
-	printf("pixels_per_bits = %d\n", pixel_bits);
 }
 
 void	init(t_fractol *f, char **av)
@@ -67,8 +66,8 @@ void	init(t_fractol *f, char **av)
 	f->max_r = 1.0;
 	f->min_i = -1.5;
 	f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
-	f->cr = -0.766667;
-	f->ci = -0.090000;
+	f->kr = -0.766667;
+	f->ki = -0.090000;
 	init_img(f);
 	f->color_pattern = -1;
 	color_shift(f);

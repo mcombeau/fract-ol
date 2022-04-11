@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:34 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:50:18 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:21:45 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 */
 int	julia_shift(int x, int y, t_fractol *f)
 {
-	f->cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
-	f->ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
-	printf("Julia: cr = %f, ci = %f\n", f->cr, f->ci);
+	f->kr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
+	f->ki = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
+	printf("Julia: kr = %f, ki = %f\n", f->kr, f->ki);
 	render(f);
 	return (0);
 }
 
-int	julia(t_fractol *f, double zr, double zi, double cr, double ci)
+int	julia(t_fractol *f, double zr, double zi)
 {
 	int		n;
 	double	tmp;
@@ -34,8 +34,8 @@ int	julia(t_fractol *f, double zr, double zi, double cr, double ci)
 	{
 		if ((zr * zr + zi * zi) > 4.0)
 			break ;
-		tmp = 2 * zr * zi + ci;
-		zr = zr * zr - zi * zi + cr;
+		tmp = 2 * zr * zi + f->ki;
+		zr = zr * zr - zi * zi + f->kr;
 		zi = tmp;
 		n++;
 	}

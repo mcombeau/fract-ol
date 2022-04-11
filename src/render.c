@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:20 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:55 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:37:26 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	render(t_fractol *f)
 {
 	int		x;
 	int		y;
-	double	cr;
-	double	ci;
+	double	pr;
+	double	pi;
 	int		nb_iter;
 
 	mlx_clear_window(f->mlx, f->win);
@@ -49,16 +49,16 @@ void	render(t_fractol *f)
 		while (x < WIDTH)
 		{
 			// Map pixel coordinate to real/imaginary point
-			cr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
-			ci = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
+			pr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
+			pi = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
 			if (f->set == MANDELBROT)
-				nb_iter = mandelbrot(f, cr, ci);
+				nb_iter = mandelbrot(f, pr, pi);
 			else if (f->set == JULIA)
-				nb_iter = julia(f, cr, ci, f->cr, f->ci);
+				nb_iter = julia(f, pr, pi);
 			else if (f->set == BURNING_SHIP)
-				nb_iter = burning_ship(f, cr, ci);
+				nb_iter = burning_ship(f, pr, pi);
 			else if (f->set == TRICORN)
-				nb_iter = tricorn(f, cr, ci);
+				nb_iter = tricorn(f, pr, pi);
 			set_pixel_color(f, x, y, f->color_palette[nb_iter]);
 			x++;
 		}

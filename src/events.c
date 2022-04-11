@@ -6,11 +6,11 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:49:57 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:37:11 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
+#include "fractol.h"
 
 void	zoom(t_fractol *f, double zoom)
 {
@@ -56,11 +56,11 @@ void	move(t_fractol *f, double distance, char direction)
 
 int key_event(int keycode, t_fractol *mlx)
 {
-/*   char *keycode_str;
+/*	char	*keycode_str;
 
-   keycode_str = ft_itoa(keycode);
-   ft_putendl_fd(keycode_str, 2);
-   free(keycode_str);
+	keycode_str = ft_itoa(keycode);
+	ft_putendl_fd(keycode_str, 2);
+	free(keycode_str);
 */	if (keycode == KEY_ESC)
 	{
 		end_fractol(mlx);
@@ -80,6 +80,14 @@ int key_event(int keycode, t_fractol *mlx)
 		move(mlx, 0.2, 'R');
 	else if (keycode == KEY_SPACE)
 		color_shift(mlx);
+	else if (keycode == KEY_ONE)
+		mlx->set = MANDELBROT;
+	else if (keycode == KEY_TWO)
+		mlx->set = JULIA;
+	else if (keycode == KEY_THREE)
+		mlx->set = BURNING_SHIP;
+	else if (keycode == KEY_FOUR)
+		mlx->set = TRICORN;
 	else
 		return (0);
 	render(mlx);

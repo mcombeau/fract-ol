@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:11 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:25 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/11 13:40:05 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
     If the result tends toward infinity, that means it is not part of
     the set. If the result stays small over several iterations, the number
     is part of the set.
-        ex.:
-            c = 1
-            Z = 0;
+        ex.: c = 1
+            Z =  0
             Z =  0 *  0 + 1 = 1
             Z =  1 *  1 + 1 = 2
             Z =  2 *  2 + 1 = 5
@@ -30,11 +29,10 @@
             ... Grows to infinity.
             So 1 is NOT part of the Mandelbrot set.
     
-        ex.2:
-            c = -1
-            Z = 0;
+        ex.2: c = -1
+            Z =    0
             Z =    0 *    0 + (-1) = -1
-            Z = (-1) * (-1) + (-1) = 0
+            Z = (-1) * (-1) + (-1) =  0
             Z =    0 *    0 + (-1) = -1
             ... Result oscillates between -1 and 0
             So -1 is part of the Mandelbrot set.
@@ -50,7 +48,7 @@
                 = (a * a) + (a * bi) + (a * bi) + (bi * bi)
                 = (a * a) - (bi * bi) + 2 * (a * bi)
     So the multiplication formula for the imaginary part is:
-                    (a * a) - (b * b)
+                    (a * a) - (bi * bi)
     And the multiplication formula for the real part is:
                     2 * a * bi
 
@@ -58,10 +56,11 @@
             https://www.mathsisfun.com/algebra/complex-number-multiply.html
 */
 /* mandelbrot:
-    Checks whether a point is part of the mandelbrot set or not.
+    Checks whether a complex number is part of the mandelbrot set or not.
     Takes as parameters the real and imaginary coordinates of a point,
     converted previously from a pixel's coordinates.
-    Here we color any pixel which is part of the mandelbrot set.
+    Returns the number of iterations before the number escapes 
+    the Mandelbrot set.
 */
 int	mandelbrot(t_fractol *f, double cr, double ci)
 {

@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:50:37 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:21:09 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*  Dimensions	*/
 # define WIDTH 900
 # define HEIGHT 900
-# define MAX_ITERATIONS 80
+# define MAX_ITERATIONS 60
 
 /*  Fractal sets	*/
 # define MANDELBROT 1
@@ -41,8 +41,8 @@ typedef struct  s_fractol
 	double  max_r;
 	double  min_i;
 	double  max_i;
-	double  cr;
-	double  ci;
+	double  kr;
+	double  ki;
 	int	 *color_palette;
 	int	 color_pattern;
 	int	 main_color;
@@ -51,7 +51,7 @@ typedef struct  s_fractol
 
 /*  Sets   */
 int mandelbrot(t_fractol *f, double cr, double ci);
-int julia(t_fractol *f, double zr, double zi, double cr, double ci);
+int julia(t_fractol *f, double zr, double zi);
 int burning_ship(t_fractol *f, double cr, double ci);
 int tricorn(t_fractol *f, double cr, double ci);
 
