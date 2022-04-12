@@ -6,10 +6,9 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:05 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:28:38 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "fractol.h"
 
@@ -29,32 +28,41 @@ void	get_colors(t_fractol *f, int ac, char **av)
 		f->second_color = f->main_color;
 	}
 	if (f->main_color == f->second_color)
-		f->second_color = (f->main_color & 0x000000) | (~f->main_color & 0xFFFFFF);
+		f->second_color = (f->main_color & 0x000000)
+			| (~f->main_color & 0xFFFFFF);
 }
 
-int	get_color_arg(t_fractol *f, char *color)
+int	skip_space_sign_0x(char *color)
 {
-	int i;
-	int x;
-	int n;
+	int	i;
 
-	n = 0;
 	i = 0;
 	while (ft_isspace(color[i]))
 		i++;
 	if (color[i] == '+')
 		i++;
-	if (color[i] == '0' && (color[i + 1] && (color[i + 1] == 'x' || color[i] == 'X')))
+	if (color[i] == '0' && (color[i + 1]
+			&& (color[i + 1] == 'x' || color[i] == 'X')))
 		i = i + 2;
+	return (i);
+}
+
+int	get_color_arg(t_fractol *f, char *color)
+{
+	int	i;
+	int	x;
+	int	n;
+
+	n = 0;
+	i = 0;
+	i = skip_space_sign_0x(color);
 	x = 0;
-	while(color[i] && ft_ishexdigit(color[i]))
+	while (color[i] && ft_ishexdigit(color[i]))
 	{
 		if (ft_isdigit(color[i]))
 			n = (n * 16) + (color[i] - '0');
 		else
-		{
 			n = (n * 16) + (ft_toupper(color[i]) - 'A' + 10);
-		}
 		i++;
 		x++;
 	}

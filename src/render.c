@@ -6,12 +6,11 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:20 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/11 15:37:26 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:18:36 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "fractol.h"
-
+#include "fractol.h"
 
 /* set_pixel_color:
 	Add a color to one pixel of the image map.
@@ -33,6 +32,21 @@ void	set_pixel_color(t_fractol *f, int x, int y, int color)
 		f->buf[x * 4 + y * WIDTH * 4 + 3] = color >> 24;
 }
 
+int	calculate_fractal(t_fractol *f, double pr, double pi)
+{
+	int	nb_iter;
+
+	if (f->set == MANDELBROT)
+		nb_iter = mandelbrot(f, pr, pi);
+	else if (f->set == JULIA)
+		nb_iter = julia(f, pr, pi);
+	else if (f->set == BURNING_SHIP)
+		nb_iter = burning_ship(f, pr, pi);
+	else if (f->set == TRICORN)
+		nb_iter = tricorn(f, pr, pi);
+	return (nb_iter);
+}
+
 void	render(t_fractol *f)
 {
 	int		x;
@@ -42,27 +56,17 @@ void	render(t_fractol *f)
 	int		nb_iter;
 
 	mlx_clear_window(f->mlx, f->win);
-	y = 0;
-	while (y < HEIGHT)
+	y = -1;
+	while (++y < HEIGHT)
 	{
-		x = 0;
-		while (x < WIDTH)
+		x = -1;
+		while (++x < WIDTH)
 		{
-			// Map pixel coordinate to real/imaginary point
 			pr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
 			pi = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
-			if (f->set == MANDELBROT)
-				nb_iter = mandelbrot(f, pr, pi);
-			else if (f->set == JULIA)
-				nb_iter = julia(f, pr, pi);
-			else if (f->set == BURNING_SHIP)
-				nb_iter = burning_ship(f, pr, pi);
-			else if (f->set == TRICORN)
-				nb_iter = tricorn(f, pr, pi);
+			nb_iter = calculate_fractal(f, pr, pi);
 			set_pixel_color(f, x, y, f->color_palette[nb_iter]);
-			x++;
 		}
-		y++;
 	}
 	mlx_put_image_to_window(f->mlx, f->win, f->img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/11 14:21:09 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/12 14:41:11 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,12 @@ int interpolate(int startcolor, int endcolor, double fraction);
 int key_event(int keycode, t_fractol *mlx);
 int mouse_event(int keycode, int x, int y, t_fractol *mlx);
 
-/*  Utils   */
+/* Initialization */
+void	clean_init(t_fractol *f);
 void	init_img(t_fractol *f);
+void	init(t_fractol *f, char **av);
+
+/*  Utils   */
 void	get_colors(t_fractol *f, int ac, char **av);
 int	get_color_arg(t_fractol *f, char *color);
 int	end_fractol(t_fractol *mlx);

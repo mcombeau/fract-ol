@@ -23,6 +23,7 @@ INC			=	-I ./includes/\
 # Sources
 SRC_PATH	=	src/
 SRC			=	fractol.c \
+				initialization.c \
 				utils.c \
 				events.c \
 				render.c \
