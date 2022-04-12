@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:53 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 15:26:37 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/12 15:58:55 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	help_msg(void)
 	ft_putendl_fd("+/- or scroll wheel\tzoom in and out.", 1);
 	ft_putendl_fd("Spacebar\t\tchange the color scheme.", 1);
 	ft_putendl_fd("Click\t\t\tshift Julia set [Julia only].", 1);
+	ft_putendl_fd("1, 2, 3, 4\t\tswitch fractals.", 1);
 	ft_putendl_fd("ESC or close window\tquit fract-ol.", 1);
 }
 
