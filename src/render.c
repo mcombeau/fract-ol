@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:20 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:58:40 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:01:45 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	render(t_fractol *f)
 	int		nb_iter;
 
 	mlx_clear_window(f->mlx, f->win);
-	get_orientation(f);
 	y = -1;
 	while (++y < HEIGHT)
 	{

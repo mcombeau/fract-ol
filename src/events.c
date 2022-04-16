@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:31:04 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:07:07 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	zoom(t_fractol *f, double zoom)
 	double	center_i;
 
 	center_r = f->min_r - f->max_r;
-	center_i = f->min_i - f->max_i;
+	center_i = f->max_i - f->min_i;
 	f->max_r = f->max_r + (center_r - zoom * center_r) / 2;
 	f->min_r = f->max_r + zoom * center_r;
-	f->max_i = f->max_i + (center_i - zoom * center_i) / 2;
-	f->min_i = f->max_i + zoom * center_i;
+	f->min_i = f->min_i + (center_i - zoom * center_i) / 2;
+	f->max_i = f->min_i + zoom * center_i;
 }
 
 void	move(t_fractol *f, double distance, char direction)
@@ -31,26 +31,35 @@ void	move(t_fractol *f, double distance, char direction)
 	double	center_i;
 
 	center_r = f->max_r - f->min_r;
-	center_i = f->min_i - f->max_i;
+	center_i = f->max_i - f->min_i;
+//	printf("center r = %f, center_i = %f, distance to move = %f\n", center_r, center_i, distance);
 	if (direction == 'R')
 	{
+//		printf("Before move right min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 		f->min_r += center_r * distance;
 		f->max_r += center_r * distance;
+//		printf("After move right min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 	}
 	else if (direction == 'L')
 	{
+//		printf("Before move left min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 		f->min_r -= center_r * distance;
 		f->max_r -= center_r * distance;
+//		printf("Before move left min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 	}
 	else if (direction == 'D')
 	{
-		f->max_i += center_i * distance;
-		f->min_i += center_i * distance;
+//		printf("Before move DOWN min_i = %f, max_i = %f\n", f->min_i, f->max_i);
+		f->min_i -= center_i * distance;
+		f->max_i -= center_i * distance;
+//		printf("After move DOWN min_i = %f, max_i = %f\n", f->min_i, f->max_i);
 	}
 	else if (direction == 'U')
 	{
-		f->max_i -= center_i * distance;
-		f->min_i -= center_i * distance;
+//		printf("Before move UP min_r = %f, max_r = %f\n", f->min_r, f->max_r);
+		f->min_i += center_i * distance;
+		f->max_i += center_i * distance;
+//		printf("Before move UP min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 	}
 }
 
@@ -59,13 +68,25 @@ int	key_event_extend(int keycode, t_fractol *mlx)
 	if (keycode == KEY_SPACE)
 		color_shift(mlx);
 	else if (keycode == KEY_ONE && mlx->set != MANDELBROT)
+	{
 		mlx->set = MANDELBROT;
+		get_orientation(mlx);
+	}
 	else if (keycode == KEY_TWO && mlx->set != JULIA)
+	{
 		mlx->set = JULIA;
+		get_orientation(mlx);
+	}
 	else if (keycode == KEY_THREE && mlx->set != BURNING_SHIP)
+	{
 		mlx->set = BURNING_SHIP;
+		get_orientation(mlx);
+	}
 	else if (keycode == KEY_FOUR && mlx->set != TRICORN)
+	{
 		mlx->set = TRICORN;
+		get_orientation(mlx);
+	}
 	else
 		return (1);
 	render(mlx);
@@ -73,7 +94,6 @@ int	key_event_extend(int keycode, t_fractol *mlx)
 }
 
 /*	char	*keycode_str;
-
 	keycode_str = ft_itoa(keycode);
 	ft_putendl_fd(keycode_str, 2);
 	free(keycode_str);
@@ -106,7 +126,6 @@ int	key_event(int keycode, t_fractol *mlx)
 }
 
 /*	char *keycode_str;
-
 	keycode_str = ft_itoa(keycode);
 	ft_putendl_fd(keycode_str, 2);
 	free(keycode_str);
