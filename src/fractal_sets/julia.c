@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:34 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 14:20:24 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:32:11 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	julia_shift(int x, int y, t_fractol *f)
 {
 	f->kr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
-	f->ki = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
+	f->ki = f->max_i + (double)y * (f->min_i - f->max_i) / HEIGHT;
 	printf("Julia: kr = %f, ki = %f\n", f->kr, f->ki);
 	render(f);
 	return (0);

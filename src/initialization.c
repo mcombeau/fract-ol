@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:31:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:24:19 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:32:18 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,8 @@ void	init(t_fractol *f, char **av)
 		exit_error(msg("MLX: error creating window.", "", 1));
 	f->min_r = -2.0;
 	f->max_r = 1.0;
-	f->max_i = -1.5;
-	f->min_i = f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
-//	f->min_i = -1.5;
-//	f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	f->min_i = -1.5;
+	f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	init_img(f);
 	f->color_pattern = -1;
 	color_shift(f);

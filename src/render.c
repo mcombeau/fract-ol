@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:20 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:23:43 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:32:03 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	render(t_fractol *f)
 		while (++x < WIDTH)
 		{
 			pr = f->min_r + (double)x * (f->max_r - f->min_r) / WIDTH;
-			pi = f->min_i + (double)y * (f->max_i - f->min_i) / HEIGHT;
+			pi = f->max_i + (double)y * (f->min_i - f->max_i) / HEIGHT;
 			nb_iter = calculate_fractal(f, pr, pi);
 			set_pixel_color(f, x, y, f->color_palette[nb_iter]);
 		}
