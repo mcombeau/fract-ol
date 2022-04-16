@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 12:59:07 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:41:52 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	ft_atox_color(t_fractol *f, char *color)
 	{
 		msg(color, ": invalid hex color.\n", 1);
 		help_msg();
-		exit(1);
+		clean_exit(1, f);
 	}
 }
 

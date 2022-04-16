@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:53 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:00:16 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:49:32 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,31 @@
 
 void	exit_error(int error_code)
 {
+	exit(error_code);
+}
+
+void	clean_exit(int error_code, t_fractol *f)
+{
+	if (f->color_palette)
+	{
+		printf("Freeing color palette.\n");
+		free(f->color_palette);
+	}
+	if (f->img)
+	{
+		printf("Destroying image.\n");
+		mlx_destroy_image(f->mlx, f->img);
+	}
+	if (f->win && f->mlx)
+	{
+		printf("Destroying window.\n");
+		mlx_destroy_window(f->mlx, f->win);
+	}
+	if (f->mlx)
+	{
+		printf("Ending loop.\n");
+		mlx_loop_end(f->mlx);
+	}
 	exit(error_code);
 }
 
@@ -75,8 +100,5 @@ void	help_msg(void)
 
 int	end_fractol(t_fractol *mlx)
 {
-	mlx_destroy_window(mlx->mlx, mlx->win);
-	if (mlx->color_palette != NULL)
-		free(mlx->color_palette);
-	exit(msg("Closed.", "", 0));
+	clean_exit(0, mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 14:20:25 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:40:07 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	get_set(t_fractol *f, char **av)
 	else
 	{
 		help_msg();
-		exit(1);
+		clean_exit(1, f);
 	}
 }
 
@@ -54,7 +54,7 @@ void	handle_args(t_fractol *f, int ac, char **av)
 	if (f->set == JULIA && !get_julia_starting_values(f, ac, av))
 	{
 		help_msg();
-		exit(0);
+		clean_exit(1, f);
 	}
 	printf("Julia starting values :\n\tkr = %f\n\tki = %f\n", f->kr, f->ki);
 	get_colors(f, ac, av);
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 	{
 		help_msg();
-		exit(0);
+		clean_exit(1, &f);
 	}
 	clean_init(&f);
 	handle_args(&f, ac, av);

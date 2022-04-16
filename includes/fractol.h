@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:01:04 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:58:14 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx);
 void	clean_init(t_fractol *f);
 void	init_img(t_fractol *f);
 void	init(t_fractol *f, char **av);
+void	get_orientation(t_fractol *f);
 
 /*  Utils   */
 void	get_colors(t_fractol *f, int ac, char **av);
@@ -84,5 +85,6 @@ void	exit_error(int error_code);
 int	 msg(char *str1, char *str2, int errno);
 void help_msg(void);
 void	print_controls(void);
+void	clean_exit(int error_code, t_fractol *f);
 
 #endif
