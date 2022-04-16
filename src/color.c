@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 17:02:13 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 17:19:38 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	set_color_triad(t_fractol *f, int color)
 
 	triad[0] = get_percent_color(color, 33);
 	triad[1] = get_percent_color(color, 66);
-	printf("Color =\t%#.6x\nTriad 1 =\t%#.6x\nTriad 2 =\t%#.6x\n", color, triad[0], triad[1]);
 	fill_color(f, color, 1);
 	fill_color(f, triad[0], 2);
 	fill_color(f, triad[1], 3);

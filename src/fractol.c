@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 16:05:15 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 17:19:31 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	handle_args(t_fractol *f, int ac, char **av)
 		help_msg();
 		clean_exit(1, f);
 	}
-	printf("Julia starting values :\n\tkr = %f\n\tki = %f\n", f->kr, f->ki);
 	get_colors(f, ac, av);
 }
 
