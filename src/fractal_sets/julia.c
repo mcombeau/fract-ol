@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:34 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/11 14:21:45 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:20:24 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	julia(t_fractol *f, double zr, double zi)
 	n = 0;
 	while (n < MAX_ITERATIONS)
 	{
-		if ((zr * zr + zi * zi) > 4.0)
+		if ((zi * zi + zr * zr) > 4.0)
 			break ;
 		tmp = 2 * zr * zi + f->ki;
 		zr = zr * zr - zi * zi + f->kr;

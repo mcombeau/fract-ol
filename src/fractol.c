@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/12 14:44:38 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:20:25 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,51 @@ void	get_set(t_fractol *f, char **av)
 	}
 }
 
+int	get_julia_starting_values(t_fractol *f, int ac, char **av)
+{
+	if (f->set != JULIA)
+		return (0);
+	if (ac == 2)
+	{
+		f->kr = -0.766667;
+		f->ki = -0.090000;
+		return (1);
+	}
+	if (!ft_strchr(av[2], '.') || !ft_strchr(av[3], '.'))
+		return (0);
+	f->kr = ft_atof(av[2]);
+	f->ki = ft_atof(av[3]);
+	if ((f->kr <= 2.0 && f->kr >= -2.0) && (f->ki <= 2.0 && f->ki >= -2.0))
+		return (1);
+	return (0);
+}
 
+void	handle_args(t_fractol *f, int ac, char **av)
+{
+	get_set(f, av);
+	if (f->set == JULIA && !get_julia_starting_values(f, ac, av))
+	{
+		help_msg();
+		exit(0);
+	}
+	printf("Julia starting values :\n\tkr = %f\n\tki = %f\n", f->kr, f->ki);
+	get_colors(f, ac, av);
+}
 
 int	main(int ac, char **av)
 {
 	t_fractol	f;
 
-	if (ac < 2 || ac > 4)
+	if (ac < 2)
 	{
 		help_msg();
 		exit(0);
 	}
 	clean_init(&f);
-	get_set(&f, av);
-	get_colors(&f, ac, av);
+	handle_args(&f, ac, av);
 	init(&f, av);
 	render(&f);
+	print_controls();
 	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);
 	mlx_key_hook(f.win, key_event, &f);
 	mlx_mouse_hook(f.win, mouse_event, &f);
