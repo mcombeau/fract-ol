@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:40:07 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 16:05:15 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void	get_set(t_fractol *f, char **av)
 
 int	get_julia_starting_values(t_fractol *f, int ac, char **av)
 {
-	if (f->set != JULIA)
-		return (0);
-	if (ac == 2)
+	if (f->set != JULIA || ac == 2)
 	{
 		f->kr = -0.766667;
 		f->ki = -0.090000;
@@ -51,7 +49,7 @@ int	get_julia_starting_values(t_fractol *f, int ac, char **av)
 void	handle_args(t_fractol *f, int ac, char **av)
 {
 	get_set(f, av);
-	if (f->set == JULIA && !get_julia_starting_values(f, ac, av))
+	if (!get_julia_starting_values(f, ac, av))
 	{
 		help_msg();
 		clean_exit(1, f);
