@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:31:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:57:54 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 16:56:32 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,23 @@ void	init_img(t_fractol *f)
 
 	f->color_palette = malloc(sizeof(int) * MAX_ITERATIONS + 1);
 	if (!(f->color_palette))
-	{
 		clean_exit(msg("Error initializing color scheme.", "", 1), f);
-	}
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	if (!(f->img))
-	{
-		mlx_destroy_window(f->mlx, f->win);
-		free(f->color_palette);
 		clean_exit(msg("image creation error.", "", 1), f);
-	}
 	buf = mlx_get_data_addr(f->img, &pixel_bits, &line_bytes, &endian);
 	f->buf = buf;
+}
+
+void	reinit_img(t_fractol *f)
+{
+	if (f->mlx && f->img)
+		mlx_destroy_image(f->mlx, f->img);
+	if (f->color_palette)
+		free(f->color_palette);
+	if (f->buf)
+		f->buf = NULL;
+	init_img(f);
 }
 
 void	init(t_fractol *f, char **av)
@@ -79,7 +84,5 @@ void	init(t_fractol *f, char **av)
 	f->min_r = -2.0;
 	f->max_r = 1.0;
 	get_orientation(f);
-	init_img(f);
-	f->color_pattern = -1;
 	color_shift(f);
 }

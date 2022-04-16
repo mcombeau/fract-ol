@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:00:44 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/16 17:02:13 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	set_color_mono(t_fractol *f, int color)
 		color2 = 0xFFFFFF;
 		i += j;
 	}
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS -1] = 0;
 }
 
 void	set_color_multiple(t_fractol *f, int colors[4], int n)
@@ -49,10 +49,10 @@ void	set_color_multiple(t_fractol *f, int colors[4], int n)
 
 	i = 0;
 	x = 0;
-	while (i <= MAX_ITERATIONS)
+	while (i < MAX_ITERATIONS)
 	{
 		j = 0;
-		while ((i + j) <= MAX_ITERATIONS && j < (MAX_ITERATIONS / (n - 1)))
+		while ((i + j) < MAX_ITERATIONS && j < (MAX_ITERATIONS / (n - 1)))
 		{
 			fraction = (double)j / (MAX_ITERATIONS / (n - 1));
 			f->color_palette[i + j] = interpolate(colors[x], colors[x + 1], fraction);
@@ -61,14 +61,14 @@ void	set_color_multiple(t_fractol *f, int colors[4], int n)
 		x++;
 		i += j;
 	}
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }
 
 void	set_color_zebra(t_fractol *f, int color, int color2)
 {
 	fill_color(f, color, 1);
 	fill_color(f, color2, 2);
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }
 
 void	set_color_triad(t_fractol *f, int color)
@@ -82,7 +82,7 @@ void	set_color_triad(t_fractol *f, int color)
 	fill_color(f, color, 1);
 	fill_color(f, triad[0], 2);
 	fill_color(f, triad[1], 3);
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }
 
 /* set_color_opposites:
@@ -113,7 +113,7 @@ void	set_color_opposites(t_fractol *f, int color)
 	g = (color >> 8) & 0xFF;
 	b = (color >> 0) & 0xFF;
 	i = -1;
-	while (++i <= MAX_ITERATIONS)
+	while (++i < MAX_ITERATIONS)
 	{
 		f->color_palette[i] = 0;
 		r += i % 0xFF;
@@ -121,7 +121,7 @@ void	set_color_opposites(t_fractol *f, int color)
 		b += i % 0xFF;
 		f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
 	}
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }
 
 void	set_color_contrasted(t_fractol *f, int color)
@@ -135,7 +135,7 @@ void	set_color_contrasted(t_fractol *f, int color)
 	g = (color >> 8) & 0xFF;
 	b = (color >> 0) & 0xFF;
 	i = -1;
-	while (++i <= MAX_ITERATIONS)
+	while (++i < MAX_ITERATIONS)
 	{
 		f->color_palette[i] = 0;
 		if (r != 0xFF)
@@ -146,7 +146,7 @@ void	set_color_contrasted(t_fractol *f, int color)
 			b += i % 0xFF;
 		f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
 	}
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }
 
 void	set_color_graphic(t_fractol *f, int color)
@@ -170,7 +170,7 @@ void	set_color_graphic(t_fractol *f, int color)
 		if (b != 0xFF)
 			b++;
 	}
-	while (++i <= MAX_ITERATIONS)
+	while (++i < MAX_ITERATIONS)
 	{
 		f->color_palette[i] = 0;
 		r -= i % 0xFF;
@@ -178,12 +178,13 @@ void	set_color_graphic(t_fractol *f, int color)
 		b -= i % 0xFF;
 		f->color_palette[i] = 0xFF << 24 | r << 16 | g << 8 | b;
 	}
-	f->color_palette[MAX_ITERATIONS] = 0;
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }
 
 void	color_shift(t_fractol *f)
 {
 	f->color_pattern = (f->color_pattern + 1) % 8;
+	reinit_img(f);
 	if (f->color_pattern == 0)
 		set_color_triad(f, f->main_color);
 	else if (f->color_pattern == 1)
