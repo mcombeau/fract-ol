@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:25:03 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:24:00 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,32 @@ void	get_set(t_fractol *f, char **av)
 	}
 }
 
-int	get_julia_starting_values(t_fractol *f, int ac, char **av)
+void	get_julia_starting_values(t_fractol *f, int ac, char **av)
 {
 	if (f->set != JULIA || ac == 2)
 	{
 		f->kr = -0.766667;
 		f->ki = -0.090000;
-		return (1);
+		return ;
 	}
-	if (!ft_strchr(av[2], '.') || !ft_strchr(av[3], '.'))
-		return (0);
+	if (ac == 3)
+		clean_exit(msg("error: ", "No second Julia value provided.", 1), f);
+	if (!ft_strchr(av[2], '.'))
+		clean_exit(msg(av[2], ": is not a valid Julia value.", 1), f);
+	if (!ft_strchr(av[3], '.'))
+		clean_exit(msg(av[3], ": is not a valid Julia value.", 1), f);
 	f->kr = ft_atof(av[2]);
 	f->ki = ft_atof(av[3]);
-	if ((f->kr <= 2.0 && f->kr >= -2.0) && (f->ki <= 2.0 && f->ki >= -2.0))
-		return (1);
-	return (0);
+	if (f->kr > 2.0 || f->kr < -2.0)
+		clean_exit(msg(av[2], ": is not a valid Julia value.", 1), f);
+	if (f->ki >= 2.0 || f->ki <= -2.0)
+		clean_exit(msg(av[3], ": is not a valid Julia value.", 1), f);
 }
 
 void	handle_args(t_fractol *f, int ac, char **av)
 {
 	get_set(f, av);
-	if (!get_julia_starting_values(f, ac, av))
-	{
-		help_msg();
-		clean_exit(1, f);
-	}
+	get_julia_starting_values(f, ac, av);
 	get_colors(f, ac, av);
 }
 

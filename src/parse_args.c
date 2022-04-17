@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:40:22 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:19:33 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,18 @@ double	ft_atof(char *str)
 	}
 	if (str[i] == '.')
 		i++;
+	if (!ft_isdigit(str[i]))
+	{
+		printf("str[%d] == %c\n", i, str[i]);
+		return(-42);
+	}
 	while (str[i] && ft_isdigit(str[i]))
 	{
 		nb = nb + ((str[i] - '0') * div);
 		div *= 0.1;
 		i++;
 	}
+	if (str[i] && !ft_isdigit(str[i]))
+		return (-42);
 	return (nb * is_neg);
 }
