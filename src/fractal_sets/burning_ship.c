@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:25 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:14:17 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:14:38 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
     Z = Z * Z + c
 */
-int	burning_ship(t_fractol *f, double cr, double ci)
+int	burning_ship(double cr, double ci)
 {
 	int		n;
 	double	zr;

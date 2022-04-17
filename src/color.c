@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 17:19:38 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:12:52 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	set_color_zebra(t_fractol *f, int color, int color2)
 
 void	set_color_triad(t_fractol *f, int color)
 {
-	int		i;
 	int		triad[2];
 
 	triad[0] = get_percent_color(color, 33);

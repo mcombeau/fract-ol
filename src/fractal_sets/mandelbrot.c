@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:11 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/11 13:40:05 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:20:01 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
     Returns the number of iterations before the number escapes 
     the Mandelbrot set.
 */
-int	mandelbrot(t_fractol *f, double cr, double ci)
+int	mandelbrot(double cr, double ci)
 {
 	int		n;
 	double	zr;

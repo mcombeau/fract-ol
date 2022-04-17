@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:31:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 18:05:02 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:21:58 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,37 @@ void	clean_init(t_fractol *f)
 	f->max_i = 0;
 	f->kr = 0;
 	f->ki = 0;
+	f->sx = 0;
+	f->rx = 0;
+	f->fx = 0;
 	f->color_palette = NULL;
 	f->color_pattern = -1;
 	f->main_color = 0;
 	f->second_color = 0;
 }
 
-void	get_orientation(t_fractol *f)
+void	get_complex_layout(t_fractol *f)
 {
-	if (f->set == BURNING_SHIP)
+	if (f->set == MANDELBOX)
 	{
-		f->max_i = -1.5;
+		f->min_r = -4.0;
+		f->max_r = 4.0;
+		f->min_i = -4.0;
+		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+	}
+	else if (f->set == JULIA)
+	{
+		f->min_r = -2.0;
+		f->max_r = 2.0;
+		f->max_i = -2.0;
 		f->min_i = f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 	else
 	{
-		f->min_i = -1.5;
-		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+		f->min_r = -2.0;
+		f->max_r = 1.0;
+		f->max_i = -1.5;
+		f->min_i = f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 }
 
@@ -73,7 +87,7 @@ void	reinit_img(t_fractol *f)
 	init_img(f);
 }
 
-void	init(t_fractol *f, char **av)
+void	init(t_fractol *f)
 {
 	f->mlx = mlx_init();
 	if (!f->mlx)
@@ -81,8 +95,9 @@ void	init(t_fractol *f, char **av)
 	f->win = mlx_new_window(f->mlx, WIDTH, HEIGHT, "Fractol");
 	if (!f->win)
 		clean_exit(msg("MLX: error creating window.", "", 1), f);
-	f->min_r = -2.0;
-	f->max_r = 1.0;
-	get_orientation(f);
+	f->sx = 2.0;
+	f->rx = 0.5;
+	f->fx = 1.0;
+	get_complex_layout(f);
 	color_shift(f);
 }

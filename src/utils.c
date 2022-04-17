@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:53 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 11:37:44 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:12:36 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ void	help_msg(void)
 int	end_fractol(t_fractol *mlx)
 {
 	clean_exit(0, mlx);
+	return (0);
 }

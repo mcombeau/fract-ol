@@ -6,13 +6,13 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:57:10 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:15:57 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	tricorn(t_fractol *f, double cr, double ci)
+int	tricorn(double cr, double ci)
 {
 	int		n;
 	double	zr;

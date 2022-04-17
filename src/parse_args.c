@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 15:41:52 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:13:32 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	ft_atox_color(t_fractol *f, char *color)
 		help_msg();
 		clean_exit(1, f);
 	}
+	return (-1);
 }
 
 double	ft_atof(char *str)

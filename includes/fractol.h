@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 16:50:25 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:17:41 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define JULIA 2
 # define BURNING_SHIP 3
 # define TRICORN 4
+# define MANDELBOX 5
 
 typedef struct  s_fractol
 {
@@ -43,6 +44,9 @@ typedef struct  s_fractol
 	double  max_i;
 	double  kr;
 	double  ki;
+	double sx;
+	double rx;
+	double fx;
 	int	 *color_palette;
 	int	 color_pattern;
 	int	 main_color;
@@ -50,10 +54,11 @@ typedef struct  s_fractol
 }   t_fractol;
 
 /*  Sets   */
-int mandelbrot(t_fractol *f, double cr, double ci);
+int mandelbrot(double cr, double ci);
 int julia(t_fractol *f, double zr, double zi);
-int burning_ship(t_fractol *f, double cr, double ci);
-int tricorn(t_fractol *f, double cr, double ci);
+int burning_ship(double cr, double ci);
+int tricorn(double cr, double ci);
+int	mandelbox(t_fractol *f, double cr, double ci);
 
 /*  Draw	*/
 void	render(t_fractol *f);
@@ -74,8 +79,8 @@ int mouse_event(int keycode, int x, int y, t_fractol *mlx);
 void	clean_init(t_fractol *f);
 void	init_img(t_fractol *f);
 void	reinit_img(t_fractol *f);
-void	init(t_fractol *f, char **av);
-void	get_orientation(t_fractol *f);
+void	init(t_fractol *f);
+void	get_complex_layout(t_fractol *f);
 
 /*  Utils   */
 void	get_colors(t_fractol *f, int ac, char **av);

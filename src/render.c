@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:20 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 18:01:45 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:16:22 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ int	calculate_fractal(t_fractol *f, double pr, double pi)
 	int	nb_iter;
 
 	if (f->set == MANDELBROT)
-		nb_iter = mandelbrot(f, pr, pi);
+		nb_iter = mandelbrot(pr, pi);
 	else if (f->set == JULIA)
 		nb_iter = julia(f, pr, pi);
 	else if (f->set == BURNING_SHIP)
-		nb_iter = burning_ship(f, pr, pi);
+		nb_iter = burning_ship(pr, pi);
 	else if (f->set == TRICORN)
-		nb_iter = tricorn(f, pr, pi);
+		nb_iter = tricorn(pr, pi);
+	else if (f->set == MANDELBOX)
+		nb_iter = mandelbox(f, pr, pi);
 	return (nb_iter);
 }
 

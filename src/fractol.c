@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 11:40:06 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:19:58 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	get_set(t_fractol *f, char **av)
 		f->set = BURNING_SHIP;
 	else if (av[1][0] == 'T' || av[1][0] == 't' || av[1][0] == '4')
 		f->set = TRICORN;
+	else if (av[1][0] == 'X' || av[1][0] == 'x' || av[1][0] == '5')
+		f->set = MANDELBOX;
 	else
 	{
 		help_msg();
@@ -68,7 +70,7 @@ int	main(int ac, char **av)
 	}
 	clean_init(&f);
 	handle_args(&f, ac, av);
-	init(&f, av);
+	init(&f);
 	render(&f);
 	print_controls();
 	mlx_hook(f.win, EVENT_CLOSE_BTN, 0, end_fractol, &f);

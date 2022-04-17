@@ -3,7 +3,7 @@ NAME	= fractol
 
 # Compiler
 CC		= gcc
-CFLAGS	= #-Werror -Wextra -Wall
+CFLAGS	= -Werror -Wextra -Wall
 
 # Minilibx
 MLX_PATH	= minilibx-linux/
@@ -33,7 +33,8 @@ SRC			=	fractol.c \
 				fractal_sets/mandelbrot.c \
 				fractal_sets/julia.c \
 				fractal_sets/burning_ship.c \
-				fractal_sets/tricorn.c
+				fractal_sets/tricorn.c \
+				fractal_sets/mandelbox.c
 
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 

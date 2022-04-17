@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 14:01:07 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/11 15:14:09 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:06:45 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define KEY_TWO 50
 # define KEY_THREE 51
 # define KEY_FOUR 52
+# define KEY_FIVE 53
 # define MOUSE_WHEEL_UP 4
 # define MOUSE_WHEEL_DOWN 5
 # define MOUSE_WHEEL_BTN 3

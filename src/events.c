@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 18:07:07 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:06:23 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,18 @@ int	key_event_extend(int keycode, t_fractol *mlx)
 	if (keycode == KEY_SPACE)
 		color_shift(mlx);
 	else if (keycode == KEY_ONE && mlx->set != MANDELBROT)
-	{
 		mlx->set = MANDELBROT;
-		get_orientation(mlx);
-	}
 	else if (keycode == KEY_TWO && mlx->set != JULIA)
-	{
 		mlx->set = JULIA;
-		get_orientation(mlx);
-	}
 	else if (keycode == KEY_THREE && mlx->set != BURNING_SHIP)
-	{
 		mlx->set = BURNING_SHIP;
-		get_orientation(mlx);
-	}
 	else if (keycode == KEY_FOUR && mlx->set != TRICORN)
-	{
 		mlx->set = TRICORN;
-		get_orientation(mlx);
-	}
+	else if (keycode == KEY_FIVE && mlx->set != MANDELBOX)
+		mlx->set = MANDELBOX;
 	else
 		return (1);
+	get_complex_layout(mlx);
 	render(mlx);
 	return (0);
 }
