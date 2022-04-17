@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:06:23 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:24:49 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,25 @@ void	move(t_fractol *f, double distance, char direction)
 
 	center_r = f->max_r - f->min_r;
 	center_i = f->max_i - f->min_i;
-//	printf("center r = %f, center_i = %f, distance to move = %f\n", center_r, center_i, distance);
 	if (direction == 'R')
 	{
-//		printf("Before move right min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 		f->min_r += center_r * distance;
 		f->max_r += center_r * distance;
-//		printf("After move right min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 	}
 	else if (direction == 'L')
 	{
-//		printf("Before move left min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 		f->min_r -= center_r * distance;
 		f->max_r -= center_r * distance;
-//		printf("Before move left min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 	}
 	else if (direction == 'D')
 	{
-//		printf("Before move DOWN min_i = %f, max_i = %f\n", f->min_i, f->max_i);
 		f->min_i -= center_i * distance;
 		f->max_i -= center_i * distance;
-//		printf("After move DOWN min_i = %f, max_i = %f\n", f->min_i, f->max_i);
 	}
 	else if (direction == 'U')
 	{
-//		printf("Before move UP min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 		f->min_i += center_i * distance;
 		f->max_i += center_i * distance;
-//		printf("Before move UP min_r = %f, max_r = %f\n", f->min_r, f->max_r);
 	}
 }
 

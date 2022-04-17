@@ -6,24 +6,12 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:13:32 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:40:22 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-void	get_colors(t_fractol *f, char *main_color, char *sec_color)
-{
-	if (main_color == NULL || main_color[0] == '\0')
-		f->main_color = 0x00FFFF;
-	else
-		f->main_color = ft_atox_color(f, main_color);
-	if (sec_color == NULL || sec_color[0] == '\0')
-		f->second_color = f->main_color;
-	else
-		f->second_color = ft_atox_color(f, sec_color);
-}
-*/
+
 void	get_colors(t_fractol *f, int ac, char **av)
 {
 	if (f->set == JULIA && (ac == 5 || ac == 6))
@@ -89,11 +77,7 @@ int	ft_atox_color(t_fractol *f, char *color)
 	if (x == 6 && !color[i])
 		return (n);
 	else
-	{
-		msg(color, ": invalid hex color.\n", 1);
-		help_msg();
-		clean_exit(1, f);
-	}
+		clean_exit(msg(color, ": invalid hex color.\n", 1), f);
 	return (-1);
 }
 

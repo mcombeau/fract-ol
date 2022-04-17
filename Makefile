@@ -30,6 +30,7 @@ SRC			=	fractol.c \
 				color.c \
 				color_utils.c \
 				parse_args.c \
+				help_msg.c \
 				fractal_sets/mandelbrot.c \
 				fractal_sets/julia.c \
 				fractal_sets/burning_ship.c \

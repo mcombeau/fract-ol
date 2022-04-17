@@ -6,13 +6,15 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 11:48:30 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:19:55 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:46:16 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-A Mandelbox is a box shaped 3d object with a fractal surface and like the Mandelbrot set,
-a Mandelbox set is calculated by applying a formula repeatedly to every point in space.
+
+A Mandelbox is a box shaped 3d object with a fractal surface
+and like the Mandelbrot set, a Mandelbox set is calculated by
+applying a formula repeatedly to every point in space.
 
 The Mandelbrot equation is: z = z2 + c
 
@@ -39,7 +41,7 @@ https://sites.google.com/site/mandelbox/what-is-a-mandelbox
 
 #include "fractol.h"
 
-double box_fold(double v)
+double	box_fold(double v)
 {
 	if (v > 1)
 		v = 2 - v;
@@ -59,10 +61,10 @@ double	ball_fold(double r, double m)
 
 int	mandelbox(t_fractol *f, double cr, double ci)
 {
-	int n;
-	double vr;
-	double vi;
-	double mag;
+	int		n;
+	double	vr;
+	double	vi;
+	double	mag;
 
 	vr = cr;
 	vi = ci;
@@ -73,10 +75,10 @@ int	mandelbox(t_fractol *f, double cr, double ci)
 		vr = f->fx * box_fold(vr);
 		vi = f->fx * box_fold(vi);
 		mag = sqrt(vr * vr + vi * vi);
-        vr = vr * f->sx * ball_fold(f->rx, mag) + cr;
-        vi = vi * f->sx * ball_fold(f->rx, mag) + ci;
+		vr = vr * f->sx * ball_fold(f->rx, mag) + cr;
+		vi = vi * f->sx * ball_fold(f->rx, mag) + ci;
 		if (sqrt(mag) > 2)
-			break;
+			break ;
 		n++;
 	}
 	return (n);
