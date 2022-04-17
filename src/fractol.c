@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 17:19:31 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 11:40:06 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 	if (ac < 2)
 	{
 		help_msg();
-		clean_exit(1, &f);
+		clean_exit(1, NULL);
 	}
 	clean_init(&f);
 	handle_args(&f, ac, av);

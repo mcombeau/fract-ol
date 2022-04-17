@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:21:53 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/16 17:17:02 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 11:37:44 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	clean_exit(int exit_code, t_fractol *f)
 {
+	if (!f)
+		exit(exit_code);
 	if (f->color_palette)
 		free(f->color_palette);
 	if (f->img)
 		mlx_destroy_image(f->mlx, f->img);
 	if (f->win && f->mlx)
-	{
 		mlx_destroy_window(f->mlx, f->win);
-		mlx_destroy_display(f->mlx);
-	}
 	if (f->mlx)
 	{
 		mlx_loop_end(f->mlx);
+		mlx_destroy_display(f->mlx);
 		free(f->mlx);
 	}
 	exit(exit_code);
