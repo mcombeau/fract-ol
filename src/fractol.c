@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 16:44:23 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:48:27 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	get_julia_starting_values(t_fractol *f, int ac, char **av)
 		clean_exit(msg(av[2], ": is not a valid Julia value.", 1), f);
 	if (!ft_strchr(av[3], '.'))
 		clean_exit(msg(av[3], ": is not a valid Julia value.", 1), f);
-	f->kr = ft_atof(av[2], 0);
-	f->ki = ft_atof(av[3], 0);
+	f->kr = ft_atof(av[2]);
+	f->ki = ft_atof(av[3]);
 	if (f->kr > 2.0 || f->kr < -2.0)
 		clean_exit(msg(av[2], ": is not a valid Julia value.", 1), f);
 	if (f->ki >= 2.0 || f->ki <= -2.0)

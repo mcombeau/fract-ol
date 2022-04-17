@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 16:45:06 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:48:20 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,14 @@ int	skip_space_sign(char *str, int *is_neg)
 	return (i);
 }
 
-double	ft_atof(char *str, double nb)
+double	ft_atof(char *str)
 {
 	int		i;
+	double	nb;
 	int		is_neg;
 	double	div;
 
+	nb = 0;
 	div = 0.1;
 	is_neg = 1;
 	i = skip_space_sign(str, &is_neg);
@@ -113,8 +115,6 @@ double	ft_atof(char *str, double nb)
 	}
 	if (str[i] == '.')
 		i++;
-	if (!ft_isdigit(str[i]))
-		return (-42);
 	while (str[i] && ft_isdigit(str[i]))
 	{
 		nb = nb + ((str[i] - '0') * div);
