@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:31:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:25:16 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 17:35:29 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	clean_init(t_fractol *f)
 	f->sx = 0;
 	f->rx = 0;
 	f->fx = 0;
-	f->color_palette = NULL;
+	f->palette = NULL;
 	f->color_pattern = -1;
 	f->main_color = 0;
 	f->second_color = 0;
@@ -66,8 +66,8 @@ void	init_img(t_fractol *f)
 	int		endian;
 	char	*buf;
 
-	f->color_palette = malloc(sizeof(int) * MAX_ITERATIONS + 1);
-	if (!(f->color_palette))
+	f->palette = malloc(sizeof(int) * MAX_ITERATIONS + 1);
+	if (!(f->palette))
 		clean_exit(msg("Error initializing color scheme.", "", 1), f);
 	f->img = mlx_new_image(f->mlx, WIDTH, HEIGHT);
 	if (!(f->img))
@@ -80,8 +80,8 @@ void	reinit_img(t_fractol *f)
 {
 	if (f->mlx && f->img)
 		mlx_destroy_image(f->mlx, f->img);
-	if (f->color_palette)
-		free(f->color_palette);
+	if (f->palette)
+		free(f->palette);
 	if (f->buf)
 		f->buf = NULL;
 	init_img(f);

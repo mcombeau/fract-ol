@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 17:13:25 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 17:35:33 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_fractol
 	double	sx;
 	double	rx;
 	double	fx;
-	int		*color_palette;
+	int		*palette;
 	int		color_pattern;
 	int		main_color;
 	int		second_color;

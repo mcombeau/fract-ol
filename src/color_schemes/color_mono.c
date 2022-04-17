@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:06:13 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 17:07:52 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 17:36:21 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	set_color_mono(t_fractol *f, int color)
 		while (j < MAX_ITERATIONS / 2)
 		{
 			fraction = (double)j / (MAX_ITERATIONS / 2);
-			f->color_palette[i + j] = interpolate(color1, color2, fraction);
+			f->palette[i + j] = interpolate(color1, color2, fraction);
 			j++;
 		}
 		color1 = color;
 		color2 = 0xFFFFFF;
 		i += j;
 	}
-	f->color_palette[MAX_ITERATIONS -1] = 0;
+	f->palette[MAX_ITERATIONS -1] = 0;
 }

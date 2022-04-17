@@ -6,32 +6,30 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:06:07 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 17:13:33 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 17:35:27 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// Interpolation = (endValue - startValue) * stepNumber / lastStepNumber + startValue
-int interpolate(int startcolor, int endcolor, double fraction)
+// Interpolation = (endValue - startValue) 
+// * stepNumber / lastStepNumber + startValue
+// rgb[3] : [0] = red, [1] = green, [2] = blue
+int	interpolate(int startcolor, int endcolor, double fraction)
 {
-	int start_r;
-	int start_g;
-	int start_b;
-	int end_r;
-	int end_g;
-	int end_b;
+	int	start_rgb[3];
+	int	end_rgb[3];
 
-	start_r = ((startcolor >> 16) & 0xFF);
-	start_g = ((startcolor >> 8) & 0xFF);
-	start_b = ((startcolor >> 0) & 0xFF);
-	end_r = ((endcolor >> 16) & 0xFF);
-	end_g = ((endcolor >> 8) & 0xFF);
-	end_b = ((endcolor >> 0) & 0xFF);
-	start_r = (end_r - start_r) * fraction + start_r;
-	start_g = (end_g - start_g) * fraction + start_g;
-	start_b = (end_b - start_b) * fraction +start_b;
-	return (0xFF << 24 | start_r << 16 | start_g << 8 | start_b);
+	start_rgb[0] = ((startcolor >> 16) & 0xFF);
+	start_rgb[1] = ((startcolor >> 8) & 0xFF);
+	start_rgb[2] = ((startcolor >> 0) & 0xFF);
+	end_rgb[0] = ((endcolor >> 16) & 0xFF);
+	end_rgb[1] = ((endcolor >> 8) & 0xFF);
+	end_rgb[2] = ((endcolor >> 0) & 0xFF);
+	start_rgb[0] = (end_rgb[0] - start_rgb[0]) * fraction + start_rgb[0];
+	start_rgb[1] = (end_rgb[1] - start_rgb[1]) * fraction + start_rgb[1];
+	start_rgb[2] = (end_rgb[2] - start_rgb[2]) * fraction + start_rgb[2];
+	return (0xFF << 24 | start_rgb[0] << 16 | start_rgb[1] << 8 | start_rgb[2]);
 }
 
 void	set_color_multiple(t_fractol *f, int colors[4], int n)
@@ -49,11 +47,11 @@ void	set_color_multiple(t_fractol *f, int colors[4], int n)
 		while ((i + j) < MAX_ITERATIONS && j < (MAX_ITERATIONS / (n - 1)))
 		{
 			fraction = (double)j / (MAX_ITERATIONS / (n - 1));
-			f->color_palette[i + j] = interpolate(colors[x], colors[x + 1], fraction);
+			f->palette[i + j] = interpolate(colors[x], colors[x + 1], fraction);
 			j++;
 		}
 		x++;
 		i += j;
 	}
-	f->color_palette[MAX_ITERATIONS - 1] = 0;
+	f->palette[MAX_ITERATIONS - 1] = 0;
 }
