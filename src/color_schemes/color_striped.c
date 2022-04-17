@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_utils.c                                      :+:      :+:    :+:   */
+/*   color_striped.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/08 16:15:17 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/09 14:13:34 by mcombeau         ###   ########.fr       */
+/*   Created: 2022/04/17 17:05:39 by mcombeau          #+#    #+#             */
+/*   Updated: 2022/04/17 17:09:12 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,21 @@ int get_percent_color(int color, double percent)
 	return (0xFF << 24 | tr << 16 | tg << 8 | tb);
 }
 
-// Interpolation = (endValue - startValue) * stepNumber / lastStepNumber + startValue
-int interpolate(int startcolor, int endcolor, double fraction)
+void	set_color_zebra(t_fractol *f, int color, int color2)
 {
-	int start_r;
-	int start_g;
-	int start_b;
-	int end_r;
-	int end_g;
-	int end_b;
+	fill_color(f, color, 1);
+	fill_color(f, color2, 2);
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
+}
 
-	start_r = ((startcolor >> 16) & 0xFF);
-	start_g = ((startcolor >> 8) & 0xFF);
-	start_b = ((startcolor >> 0) & 0xFF);
-	end_r = ((endcolor >> 16) & 0xFF);
-	end_g = ((endcolor >> 8) & 0xFF);
-	end_b = ((endcolor >> 0) & 0xFF);
-	start_r = (end_r - start_r) * fraction + start_r;
-	start_g = (end_g - start_g) * fraction + start_g;
-	start_b = (end_b - start_b) * fraction +start_b;
-	return (0xFF << 24 | start_r << 16 | start_g << 8 | start_b);
+void	set_color_triad(t_fractol *f, int color)
+{
+	int		triad[2];
+
+	triad[0] = get_percent_color(color, 33);
+	triad[1] = get_percent_color(color, 66);
+	fill_color(f, color, 1);
+	fill_color(f, triad[0], 2);
+	fill_color(f, triad[1], 3);
+	f->color_palette[MAX_ITERATIONS - 1] = 0;
 }

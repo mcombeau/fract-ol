@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 16:48:12 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 17:13:25 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,17 @@ int		mandelbox(t_fractol *f, double cr, double ci);
 
 /*  Draw	*/
 void	render(t_fractol *f);
-void	color_shift(t_fractol *f);
-void	set_color_opposites(t_fractol *f, int color);
-void	set_color_zebra(t_fractol *f, int color, int color2);
-void	set_color_mono(t_fractol *f, int color);
 int		julia_shift(int x, int y, t_fractol *f);
+
+/* Colors	*/
+void	color_shift(t_fractol *f);
+void	set_color_mono(t_fractol *f, int color);
+void	set_color_multiple(t_fractol *f, int colors[4], int n);
+void	set_color_zebra(t_fractol *f, int color, int color2);
+void	set_color_triad(t_fractol *f, int color);
+void	set_color_opposites(t_fractol *f, int color);
+void	set_color_contrasted(t_fractol *f, int color);
+void	set_color_graphic(t_fractol *f, int color);
 void	fill_color(t_fractol *f, int color, int stripe);
 int		get_percent_color(int color, double percent);
 int		interpolate(int startcolor, int endcolor, double fraction);
