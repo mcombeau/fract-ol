@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:50:08 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:44:16 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	get_complex_layout(t_fractol *f);
 /*  Utils   */
 void	get_colors(t_fractol *f, int ac, char **av);
 int		ft_atox_color(t_fractol *f, char *color);
-double	ft_atof(char *str);
+double	ft_atof(char *str, double nb);
 int		end_fractol(t_fractol *mlx);
 int		msg(char *str1, char *str2, int errno);
 void	help_msg(void);

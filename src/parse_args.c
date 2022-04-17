@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 16:19:33 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:45:06 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,31 @@ int	ft_atox_color(t_fractol *f, char *color)
 	return (-1);
 }
 
-double	ft_atof(char *str)
+int	skip_space_sign(char *str, int *is_neg)
 {
-	double	nb;
-	int		i;
-	int		is_neg;
-	double	div;
+	int	i;
 
-	nb = 0;
-	div = 0.1;
-	is_neg = 1;
 	i = 0;
 	while (ft_isspace(str[i]))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			is_neg *= -1;
+			*is_neg *= -1;
 		i++;
 	}
+	return (i);
+}
+
+double	ft_atof(char *str, double nb)
+{
+	int		i;
+	int		is_neg;
+	double	div;
+
+	div = 0.1;
+	is_neg = 1;
+	i = skip_space_sign(str, &is_neg);
 	while (str[i] && ft_isdigit(str[i]) && str[i] != '.')
 	{
 		nb = (nb * 10.0) + (str[i] - '0');
@@ -108,10 +114,7 @@ double	ft_atof(char *str)
 	if (str[i] == '.')
 		i++;
 	if (!ft_isdigit(str[i]))
-	{
-		printf("str[%d] == %c\n", i, str[i]);
-		return(-42);
-	}
+		return (-42);
 	while (str[i] && ft_isdigit(str[i]))
 	{
 		nb = nb + ((str[i] - '0') * div);
