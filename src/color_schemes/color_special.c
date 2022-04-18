@@ -6,29 +6,28 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:10:18 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 17:41:14 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:44:55 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+	Notice: These color scheme functions were created purely by accident,
+	and may not always work well with every color provided. They rely on
+	pushing past FFFFFF or 000000 which can have some unpredictable results.
+	
+	When they do work, they	create very interesting and beautiful
+	colorings, though, which is why they have not been cut from this
+	project.
+
+	Typically, they work well with middling colors, especially ones like:
+		9966FF	33FF33	FF6666	CCCC00	CC6600
+	
+	But they don't work too well with edge colors like:
+		000000	FFFFFF	00FF00	FF0000	0000FF	FFFF00
+*/
+
 #include "fractol.h"
 
-/* set_color_opposites:
-	This set of colors repeat itself over and over, turning from
-	one sharp color to the next. The colors are usually opposites on
-	the color wheel. Does not work well with pure edge colors like
-	yellow (FFFF00), red (FF0000) or blue (0000FF). 
-	Cool starting colors are:
-		0xFFFFFF: white, results in white/grey/black scheme
-		0x9966FF: purple, recults in orange/green/purple scheme
-		0x33FF33: green, results in purple/green scheme
-		0xFF6666: red, results in red/bluegreen scheme
-		0xCCCC00: yellow, results in yellow/blue scheme.
-*/
-/*
-	Work on this function, gives weird results with edge cases like
-		FF00FF FF0000 0000FF etc.
-	Limit the F side, or modulo maybe.
-*/
 void	set_color_opposites(t_fractol *f, int color)
 {
 	int	i;
@@ -76,7 +75,6 @@ void	set_color_contrasted(t_fractol *f, int color)
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }
 
-// rgb[3] : [0] = red, [1] = green, [2] = blue
 void	set_color_graphic(t_fractol *f, int color)
 {
 	int	i;

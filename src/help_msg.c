@@ -6,12 +6,16 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 15:26:41 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 12:32:45 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 13:15:46 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* print_fractal_options:
+*	Prints an explanation of the fractal options that can be specified
+*	at program launch.
+*/
 void	print_fractal_options(void)
 {
 	ft_putendl_fd("+===============  Available Fractals  ===============+", 1);
@@ -29,6 +33,10 @@ void	print_fractal_options(void)
 	ft_putendl_fd("./fractol J\n\t\t./fractol J 0.285 0.01\e[0m", 1);
 }
 
+/* print_color_options:
+*	Prints an explanation of the color options that can be specified
+*	at program launch.
+*/
 void	print_color_options(void)
 {
 	ft_putendl_fd("\n+===============  Color Display  ====================+", 1);
@@ -49,6 +57,10 @@ void	print_color_options(void)
 	ft_putendl_fd("./fractol J 0.285 0.01 CC6600\e[0m", 1);
 }
 
+/* print_controls:
+*	Prints a list of program controls to the standard output when the program
+*	launches successfully.
+*/
 void	print_controls(void)
 {
 	ft_putendl_fd("\n+===============  Controls  =========================+", 1);
@@ -61,6 +73,9 @@ void	print_controls(void)
 	ft_putendl_fd("+====================================================+\n", 1);
 }
 
+/* help_msg:
+*	Prints a help message to the standard output to explain the program options.
+*/
 void	help_msg(void)
 {
 	ft_putendl_fd("\n+====================================================+", 1);

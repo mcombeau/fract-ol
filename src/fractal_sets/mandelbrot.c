@@ -6,19 +6,51 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:37:11 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:20:01 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:40:04 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* mandelbrot:
+*   Checks whether a complex number is part of the Mandelbrot set or not.
+*   Takes as parameters the real and imaginary coordinates of a point,
+*   converted previously from a pixel's coordinates.
+*   Returns the number of iterations before the number escapes 
+*   the Mandelbrot set, which can then be used to determine coloring.
+*/
+int	mandelbrot(double cr, double ci)
+{
+	int		n;
+	double	zr;
+	double	zi;
+	double	tmp;
+
+	zr = 0;
+	zi = 0;
+	n = 0;
+	while (n < MAX_ITERATIONS)
+	{
+		if ((zr * zr + zi * zi) > 4.0)
+			break ;
+		tmp = 2 * zr * zi + ci;
+		zr = zr * zr - zi * zi + cr;
+		zi = tmp;
+		n++;
+	}
+	return (n);
+}
 /*
-    The Mandelbrot formula is an iterative one:
+    How it works:
+
+    The Mandelbrot formula iterates over complex numbers:
     At every iteration, Z is squared.
         Z = Z * Z + c
     If the result tends toward infinity, that means it is not part of
     the set. If the result stays small over several iterations, the number
     is part of the set.
+
+    Examples with regular numbers:
         ex.: c = 1
             Z =  0
             Z =  0 *  0 + 1 = 1
@@ -55,31 +87,3 @@
     See:    http://warp.povusers.org/Mandelbrot/
             https://www.mathsisfun.com/algebra/complex-number-multiply.html
 */
-/* mandelbrot:
-    Checks whether a complex number is part of the mandelbrot set or not.
-    Takes as parameters the real and imaginary coordinates of a point,
-    converted previously from a pixel's coordinates.
-    Returns the number of iterations before the number escapes 
-    the Mandelbrot set.
-*/
-int	mandelbrot(double cr, double ci)
-{
-	int		n;
-	double	zr;
-	double	zi;
-	double	tmp;
-
-	zr = 0;
-	zi = 0;
-	n = 0;
-	while (n < MAX_ITERATIONS)
-	{
-		if ((zr * zr + zi * zi) > 4.0)
-			break ;
-		tmp = 2 * zr * zi + ci;
-		zr = zr * zr - zi * zi + cr;
-		zi = tmp;
-		n++;
-	}
-	return (n);
-}

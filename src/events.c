@@ -6,13 +6,21 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 11:54:32 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 13:46:14 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	zoom(t_fractol *f, double zoom)
+/* zoom:
+*	Zooms the view of the fractal in or out by adjusting
+*	the complex number edge values by a zoom multiplier.
+*	The fractal can then be generated again at a different resolution,
+*	giving the appearance of zooming in or out.
+*	If the zoom multiplier is small, like 0.5, the view will
+*	zoom in, if it is big, like 2.0, it will zoom out.
+*/
+static void	zoom(t_fractol *f, double zoom)
 {
 	double	center_r;
 	double	center_i;
@@ -25,7 +33,11 @@ void	zoom(t_fractol *f, double zoom)
 	f->max_i = f->min_i + zoom * center_i;
 }
 
-void	move(t_fractol *f, double distance, char direction)
+/* move:
+*	Moves the view of the fractal by adjusting the complex
+*	number edge values a certain distance in a certain direction.
+*/
+static void	move(t_fractol *f, double distance, char direction)
 {
 	double	center_r;
 	double	center_i;
@@ -54,7 +66,16 @@ void	move(t_fractol *f, double distance, char direction)
 	}
 }
 
-int	key_event_extend(int keycode, t_fractol *mlx)
+/* key_event_extend:
+*	Handles events from the keyboard keys:
+*		- 1, 2, 3, 4, 5: switch fractals
+*	This function is registered to an MLX hook and will
+*	automatically be called when the user does anything inside the
+*	program window with the keyboard.
+*	If a valid event is detected, settings are adjusted and the fractal
+*	gets redrawn.
+*/
+static int	key_event_extend(int keycode, t_fractol *mlx)
 {
 	if (keycode == KEY_ONE && mlx->set != MANDELBROT)
 		mlx->set = MANDELBROT;
@@ -73,11 +94,17 @@ int	key_event_extend(int keycode, t_fractol *mlx)
 	return (0);
 }
 
-/*	char	*keycode_str;
-	keycode_str = ft_itoa(keycode);
-	ft_putendl_fd(keycode_str, 2);
-	free(keycode_str);
-	*/
+/* key_event:
+*	Handles events from the keyboard keys:
+*		- + or - key: zoom
+*		- Arrow keys or WASD: move
+*		- Space: color shift
+*	This function is registered to an MLX hook and will
+*	automatically be called when the user does anything inside the
+*	program window with the keyboard.
+*	If a valid event is detected, settings are adjusted and the fractal
+*	gets redrawn.
+*/
 int	key_event(int keycode, t_fractol *mlx)
 {
 	if (keycode == KEY_ESC)
@@ -107,10 +134,15 @@ int	key_event(int keycode, t_fractol *mlx)
 	return (0);
 }
 
-/*	char *keycode_str;
-	keycode_str = ft_itoa(keycode);
-	ft_putendl_fd(keycode_str, 2);
-	free(keycode_str);
+/* mouse_event:
+*	Handles events from the mouse:
+*		- Mouse wheel: zoom
+*		- Left click: Julia shift
+*	This function is registered to an MLX hook and will
+*	automatically be called when the user does anything inside the
+*	program window with the mouse.
+*	If a valid event is detected, settings are adjusted and the fractal
+*	gets redrawn.
 */
 int	mouse_event(int keycode, int x, int y, t_fractol *mlx)
 {

@@ -36,7 +36,6 @@ SRC			=	fractol.c \
 				fractal_sets/tricorn.c \
 				fractal_sets/mandelbox.c \
 				color_schemes/color_interpolated.c \
-				color_schemes/color_mono.c \
 				color_schemes/color_special.c \
 				color_schemes/color_striped.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))

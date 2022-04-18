@@ -6,52 +6,18 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:05:39 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 12:20:11 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:34:45 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-/*
-NOTES:
 
-Complementary
-A complementary color scheme is a two-color combination consisting 
-of a base color (H0) and another color (H1) that is 180 degrees apart
- from H0 on the color wheel.
-formula: H1 = |(H0 + 180 degrees) - 360 degrees|
-
-Split Complementary
-A split-complementary color scheme is a three-color combination that
- consists of a base color (H0) and two colors (H1 and H2) that are 
- 150 degrees and 210 degrees apart from H0 respectively.
-formula: H1 = |(H0 + 150 degrees) - 360 degrees|
-formula: H2 = |(H0 + 210 degrees) - 360 degrees|
-
-Triadic
-This is a three-color combination that consists of a base color (H0)
- and two colors (H1 and H2) that are 120 degrees and 240 degrees 
- apart from H0 respectively.
-formula: H1 = |(H0 + 120 degrees) - 360 degrees|
-formula: H2 = |(H0 + 240 degrees) - 360 degrees|
-
-Tetradic
-A four-color combination that consists of a base color (H0) and
- three colors (H1, H2, and H3) that are 90 degrees, 180 degrees, 
- and 270 degrees apart from H0 respectively.
-formula: H1 = |(H0 + 90 degrees) - 360 degrees|
-formula: H2 = |(H0 + 180 degrees) - 360 degrees|
-formula: H3 = |(H0 + 270 degrees) - 360 degrees|
-
-Analagous
-Analagous color schemes use a combination consisting of a base 
-color (H0) and one or more adjacent colors 
-(30 degrees apart) on the color wheel.
-formula: H1 = |(H0 + 30 degrees) - 360 degrees|
-formula: H2 = |(H0 + 60 degrees) - 360 degrees|
-formula: H3 = |(H0 + 90 degrees) - 360 degrees|
-
+/* fill_color:
+*	Sets a color for particular stripes intervals.
+*	If stripes = 2, the coloring will skip a palette iteration,
+*	if stripes = 3, the coloring will skip 2 palette iterations, and so on.
 */
-void	fill_color(t_fractol *f, int color, int stripe)
+static void	fill_color_stripe(t_fractol *f, int color, int stripe)
 {
 	int	i;
 
@@ -63,9 +29,15 @@ void	fill_color(t_fractol *f, int color, int stripe)
 	}
 }
 
-// Triad color 1 is 33% away from original color
-// Triad color 2 is 66% away from original color
-// rgb[3] : rgb[0] = red, rgb[1] = green, rgb[2] = blue
+/* get_percent_color:
+*	Calculates a color that is a certain percentage away
+*	from the provided color. Each color channel must be calculated
+*	separately. Intended to find somewhat complimentary colors.
+*	(For true complimentary colors picked from the color wheel,
+*	this function would need to be radically modified to use
+*	HSL colors rather than RGB...)
+*	Note: rgb[3] : rgb[0] = red, rgb[1] = green, rgb[2] = blue
+*/
 int	get_percent_color(int color, double percent)
 {
 	int		rgb[3];
@@ -82,36 +54,43 @@ int	get_percent_color(int color, double percent)
 	return (0xFF << 24 | trgb[0] << 16 | trgb[1] << 8 | trgb[2]);
 }
 
+/* set_color_zebra:
+*	Sets a zebra-striped color scheme. Colors alternate between
+*	the given color and a complimentary color 50% away from the
+*	first.
+*/
 void	set_color_zebra(t_fractol *f, int color)
 {
 	int	color2;
 
 	color2 = get_percent_color(color, 50);
-	fill_color(f, color, 1);
-	fill_color(f, color2, 2);
+	fill_color_stripe(f, color, 1);
+	fill_color_stripe(f, color2, 2);
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }
 
+/* set_color_triad:
+*	Sets a striped color scheme. Colors alternate between
+*	three colors: the given color, a color 33% away from the first
+*	and a color 66% away from the first.
+*/
 void	set_color_triad(t_fractol *f, int color)
 {
 	int		triad[2];
 
 	triad[0] = get_percent_color(color, 33);
 	triad[1] = get_percent_color(color, 66);
-	fill_color(f, color, 1);
-	fill_color(f, triad[0], 2);
-	fill_color(f, triad[1], 3);
+	fill_color_stripe(f, color, 1);
+	fill_color_stripe(f, triad[0], 2);
+	fill_color_stripe(f, triad[1], 3);
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }
 
-/*
-Tetradic
-A four-color combination that consists of a base color (H0) and
- three colors (H1, H2, and H3) that are 90 degrees, 180 degrees, 
- and 270 degrees apart from H0 respectively.
-formula: H1 = |(H0 + 90 degrees) - 360 degrees|
-formula: H2 = |(H0 + 180 degrees) - 360 degrees|
-formula: H3 = |(H0 + 270 degrees) - 360 degrees|
+/* set_color_tetra:
+*	Sets a striped color scheme. Colors alternate between
+*	four colors: the given color, a color 25% away from it,
+*	a color 50% away from the first, and a color 75% away from
+*	the first.
 */
 void	set_color_tetra(t_fractol *f, int color)
 {
@@ -120,9 +99,9 @@ void	set_color_tetra(t_fractol *f, int color)
 	tetra[0] = get_percent_color(color, 25);
 	tetra[1] = get_percent_color(color, 50);
 	tetra[2] = get_percent_color(color, 75);
-	fill_color(f, color, 1);
-	fill_color(f, tetra[0], 2);
-	fill_color(f, tetra[1], 3);
-	fill_color(f, tetra[2], 4);
+	fill_color_stripe(f, color, 1);
+	fill_color_stripe(f, tetra[0], 2);
+	fill_color_stripe(f, tetra[1], 3);
+	fill_color_stripe(f, tetra[2], 4);
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }

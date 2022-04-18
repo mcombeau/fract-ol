@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 12:15:52 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:26:17 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ typedef struct s_fractol
 	double	fx;
 	int		*palette;
 	int		color_pattern;
-	int		main_color;
+	int		color;
 }	t_fractol;
 
-/*  Sets   */
+/*  Fractal Sets   */
 int		mandelbrot(double cr, double ci);
 int		julia(t_fractol *f, double zr, double zi);
 int		burning_ship(double cr, double ci);
 int		tricorn(double cr, double ci);
 int		mandelbox(t_fractol *f, double cr, double ci);
 
-/*  Draw	*/
+/*  Draw Fractal	*/
 void	render(t_fractol *f);
 int		julia_shift(int x, int y, t_fractol *f);
 
@@ -73,9 +73,7 @@ void	set_color_tetra(t_fractol *f, int color);
 void	set_color_opposites(t_fractol *f, int color);
 void	set_color_contrasted(t_fractol *f, int color);
 void	set_color_graphic(t_fractol *f, int color);
-void	fill_color(t_fractol *f, int color, int stripe);
 int		get_percent_color(int color, double percent);
-int		interpolate(int startcolor, int endcolor, double fraction);
 
 /*  Events   */
 int		key_event(int keycode, t_fractol *mlx);
@@ -83,19 +81,17 @@ int		mouse_event(int keycode, int x, int y, t_fractol *mlx);
 
 /* Initialization */
 void	clean_init(t_fractol *f);
-void	init_img(t_fractol *f);
 void	reinit_img(t_fractol *f);
 void	init(t_fractol *f);
 void	get_complex_layout(t_fractol *f);
+void	get_color(t_fractol *f, int ac, char **av);
+double	ft_atof(char *str);
 
 /*  Utils   */
-void	get_colors(t_fractol *f, int ac, char **av);
-int		ft_atox_color(t_fractol *f, char *color);
-double	ft_atof(char *str);
 int		end_fractol(t_fractol *mlx);
+void	clean_exit(int error_code, t_fractol *f);
 int		msg(char *str1, char *str2, int errno);
 void	help_msg(void);
 void	print_controls(void);
-void	clean_exit(int error_code, t_fractol *f);
 
 #endif
