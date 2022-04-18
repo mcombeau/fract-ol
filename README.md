@@ -16,7 +16,7 @@ Note that this project was tested on Linux only. It may run on MacOS with small 
 
 ## Installing and Compiling Fract-ol
 
-Clone the repository, including the embedded repository:
+Clone the repository, including the embedded MiniLibX repository:
 ```shell
 git clone https://github.com/mcombeau/fract-ol.git && cd fract-ol && git submodule init && git submodule update
 ```
