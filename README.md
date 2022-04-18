@@ -62,12 +62,12 @@ While Fractol is running, the following set of controls are available:
 
 <table>
   <tr><td><strong>Controls</strong></td><td><strong>Action</strong></td></tr>
-  <tr><td>WASD or arrow keys</td><td>Move</td></tr>
-  <tr><td>-, + or scroll wheel</td><td>Zoom in and out</td></tr>
-  <tr><td>Spacebar</td><td>Change color scheme</td></tr>
-  <tr><td>Left Click</td><td>Shift Julia set [Julia only]</td></tr>
-  <tr><td>1, 2, 3,  4, or 5</td><td>Switch fractals</td></tr>
-  <tr><td>ESC or close window</td><td>Quit fract-ol</td></tr>
+  <tr><td><kbd>&nbsp;W&nbsp;</kbd><kbd>&nbsp;A&nbsp;</kbd><kbd>&nbsp;S&nbsp;</kbd><kbd>&nbsp;D&nbsp;</kbd> or <kbd>&nbsp;▲&nbsp;</kbd><kbd>&nbsp;◄&nbsp;</kbd><kbd>&nbsp;▼&nbsp;</kbd><kbd>&nbsp;►&nbsp;</kbd></td><td>Move</td></tr>
+  <tr><td><kbd>&nbsp;-&nbsp;</kbd>, <kbd>&nbsp;+&nbsp;</kbd> or <kbd>&nbsp;scroll wheel&nbsp;</kbd></td><td>Zoom in and out</td></tr>
+  <tr><td><kbd>&nbsp;space&nbsp;</kbd></td><td>Change color scheme</td></tr>
+  <tr><td><kbd>&nbsp;left click&nbsp;</kbd></td><td>Shift Julia set [Julia only]</td></tr>
+  <tr><td><kbd>&nbsp;1&nbsp;</kbd>, <kbd>&nbsp;2&nbsp;</kbd>, <kbd>&nbsp;3&nbsp;</kbd>, <kbd>&nbsp;4&nbsp;</kbd>, or <kbd>&nbsp;5&nbsp;</kbd></td><td>Switch fractals</td></tr>
+  <tr><td><kbd>&nbsp;esc&nbsp;</kbd> or close window</td><td>Quit fract-ol</td></tr>
 </table>
 
 ---
