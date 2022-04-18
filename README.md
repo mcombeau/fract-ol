@@ -61,7 +61,7 @@ Please note that for the Julia set, the color option will only be available afte
 While Fractol is running, the following set of controls are available:
 
 <table>
-  <tr><td>Controls</td><td>Action</td></tr>
+  <tr><td><strong>Controls</strong></td><td><strong>Action</strong></td></tr>
   <tr><td>WASD or arrow keys</td><td>Move</td></tr>
   <tr><td>-, + or scroll wheel</td><td>Zoom in and out</td></tr>
   <tr><td>Spacebar</td><td>Change color scheme</td></tr>
