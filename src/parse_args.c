@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:20:37 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 16:48:20 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 12:20:22 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,12 @@
 
 void	get_colors(t_fractol *f, int ac, char **av)
 {
-	if (f->set == JULIA && (ac == 5 || ac == 6))
-	{
+	if (f->set == JULIA && ac == 5)
 		f->main_color = ft_atox_color(f, av[4]);
-		if (ac == 6)
-			f->second_color = ft_atox_color(f, av[5]);
-		else
-			f->second_color = f->main_color;
-	}
-	else if (f->set != JULIA && (ac == 3 || ac == 4))
-	{
+	else if (f->set != JULIA && ac == 3)
 		f->main_color = ft_atox_color(f, av[2]);
-		if (ac == 4)
-			f->second_color = ft_atox_color(f, av[3]);
-		else
-			f->second_color = f->main_color;
-	}
 	if (ac == 2 || (f->set == JULIA && ac == 4))
-	{
 		f->main_color = 0x9966FF;
-		f->second_color = f->main_color;
-	}
-	if (f->main_color == f->second_color)
-		f->second_color = (f->main_color & 0x000000)
-			| (~f->main_color & 0xFFFFFF);
 }
 
 int	skip_space_sign_0x(char *color)

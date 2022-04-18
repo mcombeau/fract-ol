@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 17:05:39 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 17:46:44 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 12:20:11 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,11 @@ int	get_percent_color(int color, double percent)
 	return (0xFF << 24 | trgb[0] << 16 | trgb[1] << 8 | trgb[2]);
 }
 
-void	set_color_zebra(t_fractol *f, int color, int color2)
+void	set_color_zebra(t_fractol *f, int color)
 {
+	int	color2;
+
+	color2 = get_percent_color(color, 50);
 	fill_color(f, color, 1);
 	fill_color(f, color2, 2);
 	f->palette[MAX_ITERATIONS - 1] = 0;
@@ -98,5 +101,28 @@ void	set_color_triad(t_fractol *f, int color)
 	fill_color(f, color, 1);
 	fill_color(f, triad[0], 2);
 	fill_color(f, triad[1], 3);
+	f->palette[MAX_ITERATIONS - 1] = 0;
+}
+
+/*
+Tetradic
+A four-color combination that consists of a base color (H0) and
+ three colors (H1, H2, and H3) that are 90 degrees, 180 degrees, 
+ and 270 degrees apart from H0 respectively.
+formula: H1 = |(H0 + 90 degrees) - 360 degrees|
+formula: H2 = |(H0 + 180 degrees) - 360 degrees|
+formula: H3 = |(H0 + 270 degrees) - 360 degrees|
+*/
+void	set_color_tetra(t_fractol *f, int color)
+{
+	int	tetra[3];
+
+	tetra[0] = get_percent_color(color, 25);
+	tetra[1] = get_percent_color(color, 50);
+	tetra[2] = get_percent_color(color, 75);
+	fill_color(f, color, 1);
+	fill_color(f, tetra[0], 2);
+	fill_color(f, tetra[1], 3);
+	fill_color(f, tetra[2], 4);
 	f->palette[MAX_ITERATIONS - 1] = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 15:26:41 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:36:45 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 12:32:45 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_fractal_options(void)
 	ft_putstr_fd("initial fractal shape. Values must be between\n", 1);
 	ft_putendl_fd("-2.0 and 2.0 and must contain a decimal point.", 1);
 	ft_putendl_fd("\e[36mUsage example:\t", 1);
-	ft_putendl_fd("./fractol J\n\t\t./fractol J 0.285 0.0\e[0m", 1);
+	ft_putendl_fd("./fractol J\n\t\t./fractol J 0.285 0.01\e[0m", 1);
 }
 
 void	print_color_options(void)
@@ -41,12 +41,12 @@ void	print_color_options(void)
 	ft_putendl_fd("\tPurple:\t9933FF\t\tOrange:\tCC6600", 1);
 	ft_putendl_fd("\tPink:\tFF3399\t\tTurquoise: 00FF80\t", 1);
 	ft_putstr_fd("\e[36mUsage example:\t", 1);
-	ft_putendl_fd("./fractol <type> <primary_color> <secondary_color>", 1);
-	ft_putendl_fd("\t\t./fractol M 0066FF\n\t\t./fractol M 0066FF 00FF00\e[0m", 1);
+	ft_putendl_fd("./fractol <type> <color>", 1);
+	ft_putendl_fd("\t\t./fractol M 0066FF\e[0m", 1);
 	ft_putendl_fd("\nFor Julia, you can only specify colors after", 1);
 	ft_putendl_fd("the starting values.", 1);
 	ft_putstr_fd("\e[36mUsage example:\t", 1);
-	ft_putendl_fd("./fractol J -0.8 0.156 00FFFF CC6600\e[0m", 1);
+	ft_putendl_fd("./fractol J 0.285 0.01 CC6600\e[0m", 1);
 }
 
 void	print_controls(void)

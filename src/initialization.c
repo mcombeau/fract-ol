@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:31:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 17:35:29 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 12:16:39 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	clean_init(t_fractol *f)
 	f->palette = NULL;
 	f->color_pattern = -1;
 	f->main_color = 0;
-	f->second_color = 0;
 }
 
 void	get_complex_layout(t_fractol *f)

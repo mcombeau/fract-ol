@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:18:56 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:24:49 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/18 11:54:32 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void	move(t_fractol *f, double distance, char direction)
 
 int	key_event_extend(int keycode, t_fractol *mlx)
 {
-	if (keycode == KEY_SPACE)
-		color_shift(mlx);
-	else if (keycode == KEY_ONE && mlx->set != MANDELBROT)
+	if (keycode == KEY_ONE && mlx->set != MANDELBROT)
 		mlx->set = MANDELBROT;
 	else if (keycode == KEY_TWO && mlx->set != JULIA)
 		mlx->set = JULIA;
@@ -99,6 +97,8 @@ int	key_event(int keycode, t_fractol *mlx)
 		move(mlx, 0.2, 'L');
 	else if (keycode == KEY_RIGHT || keycode == KEY_D)
 		move(mlx, 0.2, 'R');
+	else if (keycode == KEY_SPACE)
+		color_shift(mlx);
 	else if (!key_event_extend(keycode, mlx))
 		return (1);
 	else
