@@ -6,11 +6,28 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 12:54:15 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/19 14:42:06 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static int	type_cmp(char *av, char *str, char c, char n)
+{
+	int	i;
+
+	i = 0;
+	while (av[i])
+	{
+		av[i] = ft_tolower(av[i]);
+		i++;
+	}
+	if (!ft_strncmp(av, str, ft_strlen(str) + 1))
+		return (1);
+	else if (av[1] == '\0' && (av[0] == c || av[0] == n))
+		return (1);
+	return (0);
+}
 
 /* get_set:
 *	Retrieves the set specified in program arguments.
@@ -19,15 +36,16 @@
 */
 static void	get_set(t_fractol *f, char **av)
 {
-	if (av[1][0] == 'M' || av[1][0] == 'm' || av[1][0] == '1')
+//	if (!ft_strncmp(av[1], "Mandelbrot", 10) || (av[1][1] == '\0' && (av[1][0] == 'M' || av[1][0] == 'm' || av[1][0] == '1')))
+	if (type_cmp(av[1], "mandelbrot", 'm', '1'))
 		f->set = MANDELBROT;
-	else if (av[1][0] == 'J' || av[1][0] == 'j' || av[1][0] == '2')
+	else if (type_cmp(av[1], "julia", 'j', '2'))
 		f->set = JULIA;
-	else if (av[1][0] == 'B' || av[1][0] == 'b' || av[1][0] == '3')
+	else if (type_cmp(av[1], "burning ship", 'b', '3'))
 		f->set = BURNING_SHIP;
-	else if (av[1][0] == 'T' || av[1][0] == 't' || av[1][0] == '4')
+	else if (type_cmp(av[1], "tricorn", 't', '4'))
 		f->set = TRICORN;
-	else if (av[1][0] == 'X' || av[1][0] == 'x' || av[1][0] == '5')
+	else if (type_cmp(av[1], "mandelbox", 'x', '5'))
 		f->set = MANDELBOX;
 	else
 	{
