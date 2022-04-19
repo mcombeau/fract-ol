@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/19 14:42:06 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/19 14:42:53 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static int	type_cmp(char *av, char *str, char c, char n)
 */
 static void	get_set(t_fractol *f, char **av)
 {
-//	if (!ft_strncmp(av[1], "Mandelbrot", 10) || (av[1][1] == '\0' && (av[1][0] == 'M' || av[1][0] == 'm' || av[1][0] == '1')))
 	if (type_cmp(av[1], "mandelbrot", 'm', '1'))
 		f->set = MANDELBROT;
 	else if (type_cmp(av[1], "julia", 'j', '2'))
