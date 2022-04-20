@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 14:01:07 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/17 15:06:45 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/20 14:19:00 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@
 # define MOUSE_WHEEL_BTN 3
 # define MOUSE_BTN 1
 # define MOUSE_BTN_2 3
+# define KEY_K 107
 
 #endif
