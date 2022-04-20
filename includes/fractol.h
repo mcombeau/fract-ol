@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:23:44 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 15:26:17 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/20 14:05:40 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*  Dimensions	*/
 # define WIDTH 900
 # define HEIGHT 900
-# define MAX_ITERATIONS 60
+# define MAX_ITERATIONS 95
 
 /*  Fractal sets	*/
 # define MANDELBROT 1

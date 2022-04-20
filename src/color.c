@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 13:35:40 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 16:05:34 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/20 14:06:56 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static void	color_shift_special(t_fractol *f)
 {
 	int	alt_color;
-	
+
 	if (f->color == 0xFFFFFF)
 		alt_color = 0xCCCCCC;
 	else
@@ -74,5 +74,5 @@ void	color_shift(t_fractol *f)
 		set_color_multiple(f, (int [4]){0x000000, alt_color,
 			get_percent_color(f->color, 50), 0xFFFFFF}, 4);
 	else
-		color_shift_striped(f);	
+		color_shift_striped(f);
 }
