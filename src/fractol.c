@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/19 14:42:53 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:59:16 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,7 @@ static void	get_set(t_fractol *f, char **av)
 	else if (type_cmp(av[1], "mandelbox", 'x', '5'))
 		f->set = MANDELBOX;
 	else
-	{
-		help_msg();
-		clean_exit(1, f);
-	}
+		help_msg(f);
 }
 
 /* get_julia_starting_values:
@@ -68,17 +65,17 @@ static void	get_julia_starting_values(t_fractol *f, int ac, char **av)
 		return ;
 	}
 	if (ac == 3)
-		clean_exit(msg("error: ", "No second Julia value provided.", 1), f);
+		help_msg(f);
 	if (!ft_strchr(av[2], '.'))
-		clean_exit(msg(av[2], ": is not a valid Julia value.", 1), f);
+		help_msg(f);
 	if (!ft_strchr(av[3], '.'))
-		clean_exit(msg(av[3], ": is not a valid Julia value.", 1), f);
+		help_msg(f);
 	f->kr = ft_atof(av[2]);
 	f->ki = ft_atof(av[3]);
 	if (f->kr > 2.0 || f->kr < -2.0)
-		clean_exit(msg(av[2], ": is not a valid Julia value.", 1), f);
+		help_msg(f);
 	if (f->ki >= 2.0 || f->ki <= -2.0)
-		clean_exit(msg(av[3], ": is not a valid Julia value.", 1), f);
+		help_msg(f);
 }
 
 /* handle_args:
@@ -88,6 +85,10 @@ static void	get_julia_starting_values(t_fractol *f, int ac, char **av)
 static void	handle_args(t_fractol *f, int ac, char **av)
 {
 	get_set(f, av);
+	if (f->set != JULIA && ac > 3)
+		help_msg(f);
+	else if (f->set == JULIA && ac > 5)
+		help_msg(f);
 	get_julia_starting_values(f, ac, av);
 	get_color(f, ac, av);
 }
@@ -102,10 +103,7 @@ int	main(int ac, char **av)
 	t_fractol	f;
 
 	if (ac < 2)
-	{
-		help_msg();
-		clean_exit(1, NULL);
-	}
+		help_msg(&f);
 	clean_init(&f);
 	handle_args(&f, ac, av);
 	init(&f);

@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 15:26:41 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/18 13:15:46 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:50:24 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,12 @@ void	print_controls(void)
 /* help_msg:
 *	Prints a help message to the standard output to explain the program options.
 */
-void	help_msg(void)
+void	help_msg(t_fractol *f)
 {
 	ft_putendl_fd("\n+====================================================+", 1);
 	ft_putendl_fd("|                     FRACT'OL                       |", 1);
 	ft_putendl_fd("+====================================================+\n", 1);
 	print_fractal_options();
 	print_color_options();
+	clean_exit(EXIT_FAILURE, f);
 }
