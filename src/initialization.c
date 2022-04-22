@@ -6,7 +6,7 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:31:33 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/20 14:21:52 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/22 15:11:31 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	get_complex_layout(t_fractol *f)
 	{
 		f->min_r = -2.0;
 		f->max_r = 2.0;
-		f->max_i = -2.0;
-		f->min_i = f->max_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
+		f->min_i = -2.0;
+		f->max_i = f->min_i + (f->max_r - f->min_r) * HEIGHT / WIDTH;
 	}
 	else
 	{
