@@ -2,6 +2,8 @@
 
 One of the first graphical projects at 42 school, fract-ol generates beautiful fractals. This project uses the school's graphical library, MiniLibX.
 
+![Fract-ol mono-colored Mandelbrot by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Mandelbrot.png)
+
 # Status
 
 Finished: 22/04/2022.
@@ -71,6 +73,28 @@ While Fractol is running, the following set of controls are available:
   <tr><td><kbd>&nbsp;1&nbsp;</kbd>, <kbd>&nbsp;2&nbsp;</kbd>, <kbd>&nbsp;3&nbsp;</kbd>, <kbd>&nbsp;4&nbsp;</kbd>, or <kbd>&nbsp;5&nbsp;</kbd></td><td>Switch fractals</td></tr>
   <tr><td><kbd>&nbsp;esc&nbsp;</kbd> or close window</td><td>Quit fract-ol</td></tr>
 </table>
+
+# Screenshots
+
+## Mandelbrot set
+
+![Fract-ol purple and yellow striped Mandelbrot by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Mandelbrot-2.png)
+![Fract-ol red bllue and green striped Mandelbrot by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Mandelbrot-3.png)
+![Fract-ol sun crest purple Mandelbrot by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Mandelbrot-4.png)
+
+## Julia set
+
+![Fract-ol purple green and yellow Julia by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Julia.png)
+![Fract-ol red swirl Julia by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Julia-2.png)
+![Fract-ol blue snowflake Julia by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Julia-3.png)
+
+## Burning ship set
+
+![Fract-ol golden burning ship by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Burning-Ship.png)
+
+## Mandelbox set
+
+![Fract-ol brown tribal Mandelbox by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Mandelbox.png)
 
 ---
 Made by mcombeau: mcombeau@student.42.fr | LinkedIn: [mcombeau](https://www.linkedin.com/in/mia-combeau-86653420b/) | Website: [codequoi.com](https://www.codequoi.com)
