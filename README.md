@@ -4,7 +4,9 @@ One of the first graphical projects at 42 school, fract-ol generates beautiful f
 
 # Status
 
-Awaiting evaluation.
+Finished: 22/04/2022.
+
+Grade: 125%.
 
 # Usage
 
