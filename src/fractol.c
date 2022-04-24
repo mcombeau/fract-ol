@@ -6,12 +6,19 @@
 /*   By: mcombeau <mcombeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/08 16:19:51 by mcombeau          #+#    #+#             */
-/*   Updated: 2022/04/21 21:59:16 by mcombeau         ###   ########.fr       */
+/*   Updated: 2022/04/24 14:56:15 by mcombeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/* type_cmp:
+*	Parses the given fractal type argument and checks against
+*	the name (i.e. "mandelbrot"), the associated letter (i.e. "M")
+*	and the associated number (i.e. "1").
+*	Returns true if the argument matches one of these requirements,
+*	false if not.
+*/
 static int	type_cmp(char *av, char *str, char c, char n)
 {
 	int	i;
