@@ -4,6 +4,14 @@ One of the first graphical projects at 42 school, fract-ol generates beautiful f
 
 ![Fract-ol mono-colored Mandelbrot by mcombeau](https://github.com/mcombeau/fract-ol/blob/main/screenshots/Fractol-Mandelbrot.png)
 
+---
+
+:us: Read my article in English about this project: [Fract’ol: generating fractals in C](https://www.codequoi.com/en/fract-ol-generating-fractals-in-c/)
+
+:fr: Lire mon article en français sur ce projet :  [Fract’ol : générer des fractales en C](https://www.codequoi.com/fract-ol-generer-des-fractales-en-c/)
+
+---
+
 # Status
 
 Finished: 22/04/2022.
